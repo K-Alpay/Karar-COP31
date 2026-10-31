@@ -1,4 +1,4 @@
-const CACHE_NAME = 'karar-cop31-v10';
+const CACHE_NAME = 'karar-cop31-v11';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
