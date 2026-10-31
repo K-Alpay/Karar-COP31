@@ -1395,7 +1395,7 @@
       height: 100vh;
       background: 
         radial-gradient(circle at center, rgba(15, 23, 42, 0.82) 0%, rgba(6, 11, 20, 0.95) 100%),
-        url('images/start_bg_split.png') center center / cover no-repeat;
+        url('images/start_bg_arkaplan.jpg') center center / cover no-repeat;
       backdrop-filter: blur(3px);
       -webkit-backdrop-filter: blur(3px);
       z-index: 2000;
@@ -1806,6 +1806,352 @@
       color: #fff;
     }
     
+
+    /* ============================================================
+       EBRU ART UI THEME & CAVEAT CALLIGRAPHIC TYPOGRAPHY
+       (Turkish Character Compatible - Official Dossiers Retain Formal Serif)
+       ============================================================ */
+
+    /* General Artistic Heading & Button Font */
+    .start-main-title,
+    .start-badge,
+    .start-actions button,
+    .btn-start-primary,
+    .btn-start-secondary,
+    .hud-menu-btn,
+    .sound-toggle-btn,
+    .badge-calendar,
+    .desk-drop-zone,
+    .desk-postpone-badge,
+    .btn-action,
+    .btn-restart,
+    .btn-stats-share,
+    .btn-stats-clear,
+    .newspaper-name,
+    .day-end-title,
+    .result-title,
+    .start-info-title,
+    .start-info-close,
+    .btn-start-modal-close,
+    .laptop-title,
+    .laptop-tab-btn,
+    .btn-req-budget,
+    .btn-pull-to-desk {
+      font-family: 'Caveat', cursive, sans-serif !important;
+      letter-spacing: 0.3px;
+    }
+
+    /* Keep Official Documents 100% Formal & Bureaucratic */
+    .official-dossier,
+    .official-dossier *,
+    .dossier-header,
+    .dossier-subject,
+    .dossier-sender,
+    .dossier-body,
+    .dossier-meta,
+    .ink-stamp {
+      font-family: 'Courier Prime', 'Special Elite', monospace, serif !important;
+    }
+
+    /* Start Main Title with Ebru Turquoise/Gold Gradient */
+    .start-main-title {
+      font-size: 54px !important;
+      font-weight: 700 !important;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #fef08a 0%, #38bdf8 45%, #34d399 75%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 8px rgba(56, 189, 248, 0.4));
+    }
+
+    /* Start Badge */
+    .start-badge {
+      font-size: 19px !important;
+      padding: 6px 18px !important;
+      border: 1.5px solid rgba(254, 240, 138, 0.5) !important;
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.4) 0%, rgba(13, 148, 136, 0.4) 100%) !important;
+    }
+
+    /* Ebru Marbled Primary Start Button */
+    .btn-start-primary {
+      font-size: 26px !important;
+      font-weight: 700 !important;
+      padding: 13px 24px !important;
+      background: linear-gradient(135deg, #0284c7 0%, #0d9488 28%, #059669 60%, #b45309 88%, #d97706 100%) !important;
+      background-size: 200% 200% !important;
+      border: 2px solid rgba(254, 240, 138, 0.7) !important;
+      border-radius: 16px !important;
+      color: #fff !important;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 6px 20px rgba(13, 148, 136, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+      transition: all 0.25s ease !important;
+    }
+
+    .btn-start-primary:hover {
+      transform: scale(1.03) translateY(-2px) !important;
+      background-position: 100% 50% !important;
+      box-shadow: 0 8px 25px rgba(56, 189, 248, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    }
+
+    /* Ebru Secondary Buttons */
+    .btn-start-secondary {
+      font-size: 21px !important;
+      font-weight: 700 !important;
+      padding: 11px 18px !important;
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.85) 0%, rgba(13, 148, 136, 0.35) 50%, rgba(2, 132, 199, 0.25) 100%) !important;
+      border: 1.5px solid rgba(56, 189, 248, 0.4) !important;
+      border-radius: 14px !important;
+      color: #e0f2fe !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .btn-start-secondary:hover {
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.45) 0%, rgba(13, 148, 136, 0.5) 100%) !important;
+      border-color: #fef08a !important;
+      transform: scale(1.02) !important;
+    }
+
+    /* Desk Actions: Onayla & Reddet & Sümen Altı in Ebru Style */
+    .btn-action {
+      font-size: 22px !important;
+      font-weight: 700 !important;
+      border-radius: 14px !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .btn-accept {
+      background: linear-gradient(135deg, #059669 0%, #0d9488 45%, #0284c7 100%) !important;
+      border: 1.5px solid rgba(110, 231, 183, 0.6) !important;
+      box-shadow: 0 4px 14px rgba(5, 150, 105, 0.4) !important;
+    }
+
+    .btn-accept:hover {
+      transform: scale(1.04) translateY(-2px) !important;
+      box-shadow: 0 6px 20px rgba(16, 185, 129, 0.6) !important;
+    }
+
+    .btn-reject {
+      background: linear-gradient(135deg, #991b1b 0%, #b91c1c 45%, #c2410c 100%) !important;
+      border: 1.5px solid rgba(252, 165, 165, 0.6) !important;
+      box-shadow: 0 4px 14px rgba(185, 28, 28, 0.4) !important;
+    }
+
+    .btn-reject:hover {
+      transform: scale(1.04) translateY(-2px) !important;
+      box-shadow: 0 6px 20px rgba(239, 68, 68, 0.6) !important;
+    }
+
+    .btn-postpone {
+      background: linear-gradient(135deg, #b45309 0%, #d97706 45%, #ca8a04 100%) !important;
+      border: 1.5px solid rgba(254, 240, 138, 0.6) !important;
+      box-shadow: 0 4px 14px rgba(217, 119, 6, 0.4) !important;
+    }
+
+    .btn-postpone:hover {
+      transform: scale(1.04) translateY(-2px) !important;
+      box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6) !important;
+    }
+
+    /* Desk Drop Zones */
+    .desk-drop-zone {
+      font-size: 20px !important;
+      font-weight: 700 !important;
+    }
+
+    /* ============================================================
+       WINDOW VIEWPORT COORDINATES (EXACT FIT FOR yeni_ofis & ofis_telefon)
+       ============================================================ */
+    .window-viewport {
+      position: absolute;
+      top: 9.2%;
+      left: 24.8%;
+      width: 50.8%;
+      height: 38.3%;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+      border-radius: 2px;
+    }
+
+    .window-city-view {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    /* ============================================================
+       DESKTOP MONITOR HOTSPOT (MAKAM PORTALI)
+       Aligns seamlessly over HP All-in-One PC screen in yeni_ofis.jpg
+       ============================================================ */
+    .desk-laptop-btn {
+      position: absolute;
+      left: 75.2%;
+      top: 37.0%;
+      width: 24.0%;
+      height: 28.5%;
+      z-index: 28;
+      cursor: pointer;
+      background: rgba(2, 132, 199, 0.05);
+      border: 2px dashed rgba(56, 189, 248, 0.4);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      transition: all 0.25s ease;
+      box-shadow: inset 0 0 16px rgba(56, 189, 248, 0.15);
+    }
+
+    .desk-laptop-btn:hover {
+      background: rgba(2, 132, 199, 0.22);
+      border-color: #fef08a;
+      box-shadow: inset 0 0 25px rgba(56, 189, 248, 0.4), 0 0 15px rgba(56, 189, 248, 0.5);
+      transform: scale(1.02);
+    }
+
+    .monitor-screen-overlay {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      background: rgba(15, 23, 42, 0.82);
+      padding: 6px 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      pointer-events: none;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+
+    .monitor-icon {
+      font-size: 16px;
+    }
+
+    .monitor-text {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      color: #38bdf8;
+      letter-spacing: 0.5px;
+    }
+
+    .monitor-sub {
+      font-family: 'Caveat', cursive, sans-serif;
+      font-size: 14px;
+      color: #fef08a;
+    }
+
+    /* Desk Sümen Altı Drawer Badge */
+    .desk-postpone-badge {
+      position: absolute;
+      left: 7%;
+      bottom: 14%;
+      z-index: 28;
+      background: rgba(15, 23, 42, 0.88);
+      border: 1.5px solid #d97706;
+      color: #fef08a;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 19px !important;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7), 0 0 10px rgba(217, 119, 6, 0.35);
+      transition: all 0.2s ease;
+    }
+
+    .desk-postpone-badge:hover {
+      transform: scale(1.08);
+      background: #b45309;
+      color: #fff;
+    }
+
+    /* ============================================================
+       MOBILE VIEWPORT & HOTSPOT COORDINATES (ofis_telefon.jpg)
+       ============================================================ */
+    @media (max-width: 768px), (orientation: portrait) {
+      .window-viewport {
+        left: 30.8% !important;
+        top: 24.5% !important;
+        width: 39.4% !important;
+        height: 23.2% !important;
+        border-radius: 2px !important;
+      }
+
+      /* Mobile Monitor Screen Hotspot */
+      .desk-laptop-btn {
+        left: 71.0% !important;
+        top: 48.0% !important;
+        width: 28.5% !important;
+        height: 15.5% !important;
+        border-radius: 3px !important;
+      }
+
+      .monitor-screen-overlay {
+        padding: 4px 6px !important;
+        gap: 1px !important;
+      }
+
+      .monitor-text {
+        font-size: 9.5px !important;
+      }
+
+      .monitor-sub {
+        font-size: 12px !important;
+      }
+
+      
+      .desk-actions {
+        gap: 4px !important;
+        margin-top: 4px !important;
+      }
+      .btn-action {
+        font-size: 17px !important;
+        padding: 6px 4px !important;
+        letter-spacing: 0 !important;
+      }
+
+      /* Mobile Drawer Badge */
+      .desk-postpone-badge {
+        left: 4% !important;
+        top: 55.5% !important;
+        bottom: auto !important;
+        font-size: 16px !important;
+        padding: 4px 10px !important;
+      }
+
+      .start-main-title {
+        font-size: 40px !important;
+      }
+
+      .start-badge {
+        font-size: 16px !important;
+      }
+
+      .btn-start-primary {
+        font-size: 22px !important;
+        padding: 11px 18px !important;
+      }
+
+      .btn-start-secondary {
+        font-size: 18px !important;
+        padding: 9px 14px !important;
+      }
+    }
+    
+
+    .desktop-only-inline { display: inline; }
+    .mobile-only-inline { display: none; }
+    @media (max-width: 768px), (orientation: portrait) {
+      .desktop-only-inline { display: none !important; }
+      .mobile-only-inline { display: inline !important; }
+    }
+
 </style>
 </head>
 <body>
@@ -1992,22 +2338,13 @@
   <main class="office-stage">
     <!-- Layer 1: Window Viewport directly aligned with the cut-out glass -->
     <div class="window-viewport">
-      <!-- 5-Tier Video layer -->
-      <video id="windowVideo" class="window-video-layer" autoplay loop muted playsinline>
-        <source id="videoSource" src="videos/city_3.mp4" type="video/mp4">
-      </video>
-
-      <!-- Dynamic Fallback Skyline (5 Tiers) -->
-      <div class="sky-backdrop" id="skyBackdrop"></div>
-      <svg class="city-svg-layer" id="citySvg" viewBox="0 0 600 180" preserveAspectRatio="none">
-        <!-- Rendered dynamically -->
-      </svg>
+      <img id="windowCityImg" class="window-city-view" src="images/city_3.jpg" alt="Antalya Körfezi ve Şehir Manzarası">
     </div>
 
     <!-- Layer 2: The Exact Office Artwork with Cut-Out Window -->
     <!-- Dual Office Artworks: Desktop vs Mobile -->
-    <img src="images/office_desktop_cutout.png" alt="Makam Odası Masaüstü" class="office-artwork desktop-only">
-    <img src="images/office_mobile_cutout.png" alt="Makam Odası Mobil" class="office-artwork mobile-only">
+    <img src="images/yeni_ofis_cutout.png" alt="Makam Odası Masaüstü" class="office-artwork desktop-only">
+    <img src="images/ofis_telefon_cutout.png" alt="Makam Odası Mobil" class="office-artwork mobile-only">
 
     
 
@@ -2025,7 +2362,11 @@
       📁 <span id="drawerBadgeText">Sümen Altı (0/3)</span>
     </div>
     <div class="desk-laptop-btn" id="btnOpenLaptop" title="Makam Portalı: Bütçe, Başkanlık Mesajları & Danışmanlar">
-      💻 <span>Makam Portalı</span>
+      <div class="monitor-screen-overlay">
+        <span class="monitor-icon">💻</span>
+        <span class="monitor-text">MAKAM PORTALI</span>
+        <span class="monitor-sub">Bütçe & Mesajlar</span>
+      </div>
     </div>
 
     <div class="paper-desk-slot">
@@ -2071,7 +2412,7 @@
             ✕ Reddet
           </button>
           <button class="btn-action btn-postpone" id="btnPostpone">
-            📁 İncelemeye Al
+            📁 <span class="desktop-only-inline">İncelemeye Al</span><span class="mobile-only-inline">İncele</span>
           </button>
           <button class="btn-action btn-sign" id="btnSign">
             ✍️ İmzala
@@ -4040,6 +4381,9 @@
 
     btnNextDay.addEventListener('click', () => {
       dayEndModal.classList.remove('active');
+        // Update window view to reflect yesterday's decisions
+        const nextDayTier = getCityTierFromEco(stats.eco);
+        setWindowCityView(nextDayTier);
       if (currentDay < TOTAL_DAYS) {
         currentDay++;
         dossierInDay = 1;
@@ -4361,6 +4705,33 @@
       saveSprintToHistory(grade, true, 'COP31 Zirvesi Başarısı');
     }
 
+    
+    /* ============================================================
+       DYNAMIC WINDOW VIEW LOGIC (Updates only when next day starts)
+       city_1: En Kötü (Eco <= 25)
+       city_2: Biraz Düzelmiş (Eco 26-45)
+       city_3: Ortalama / Başlangıç (Eco 46-65)
+       city_4: İyi Durum (Eco 66-84)
+       city_5: COP31 Hedefi (Eco >= 85)
+       ============================================================ */
+    function getCityTierFromEco(ecoScore) {
+      if (ecoScore <= 25) return 1;
+      if (ecoScore <= 45) return 2;
+      if (ecoScore <= 65) return 3;
+      if (ecoScore <= 84) return 4;
+      return 5;
+    }
+
+    function setWindowCityView(tier) {
+      const cityImg = document.getElementById('windowCityImg');
+      if (!cityImg) return;
+      cityImg.style.opacity = '0.2';
+      setTimeout(() => {
+        cityImg.src = `images/city_${tier}.jpg`;
+        cityImg.style.opacity = '1';
+      }, 250);
+    }
+    
     function restartGame() {
       stats = { budget: 1000000, eco: 45, youth: 55, mayor: 50 };
       dayStartStats = { budget: 1000000, eco: 45, youth: 55, mayor: 50 };
@@ -4382,6 +4753,7 @@
       updateDrawerBadge();
       updateMetrics();
       loadMemo();
+      setWindowCityView(3);
       startScreen.classList.add('active');
     }
 

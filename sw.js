@@ -1,11 +1,17 @@
-const CACHE_NAME = 'eko-burokrat-v6';
+const CACHE_NAME = 'eko-burokrat-v7';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
-  './images/start_bg_split.png',
-  './images/office_desktop_cutout.png',
-  './images/office_mobile_cutout.png',
+  './fonts/Caveat-SemiBold.ttf',
+  './images/start_bg_arkaplan.jpg',
+  './images/yeni_ofis_cutout.png',
+  './images/ofis_telefon_cutout.png',
+  './images/city_1.jpg',
+  './images/city_2.jpg',
+  './images/city_3.jpg',
+  './images/city_4.jpg',
+  './images/city_5.jpg',
   './images/zeynep.png',
   './images/baskan.png',
   './images/ali.png',
