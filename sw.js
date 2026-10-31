@@ -1,4 +1,4 @@
-const CACHE_NAME = 'eko-burokrat-v7';
+const CACHE_NAME = 'eko-burokrat-v8';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

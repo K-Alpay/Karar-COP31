@@ -253,16 +253,18 @@
 
     .paper-desk-slot {
       position: absolute;
-      bottom: 3%;
-      left: 26%;
-      width: 48%;
-      height: 26%;
-      min-width: 380px;
-      max-width: 580px;
+      bottom: 8.5%;
+      left: 47%;
+      transform: translateX(-50%);
+      width: 46%;
+      height: auto;
+      min-width: 400px;
+      max-width: 590px;
       z-index: 25;
       display: flex;
       align-items: center;
       justify-content: center;
+      touch-action: none;
     }
 
     /* ============================================================
@@ -2152,6 +2154,230 @@
       .mobile-only-inline { display: inline !important; }
     }
 
+
+    /* ============================================================
+       OFFICIAL COP31 MODERN TYPOGRAPHY: OUTFIT + INTER
+       (Crisp, non-fatiguing, modern Solarpunk aesthetic)
+       ============================================================ */
+    body, html {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+    }
+
+    /* Headings, Brand Titles, Buttons, Badges use Outfit */
+    .start-main-title,
+    .start-badge,
+    .start-actions button,
+    .btn-start-primary,
+    .btn-start-secondary,
+    .hud-menu-btn,
+    .sound-toggle-btn,
+    .badge-calendar,
+    .desk-drop-zone,
+    .desk-postpone-badge,
+    .btn-action,
+    .btn-restart,
+    .btn-stats-share,
+    .btn-stats-clear,
+    .newspaper-name,
+    .day-end-title,
+    .result-title,
+    .start-info-title,
+    .start-info-close,
+    .btn-start-modal-close,
+    .laptop-title,
+    .laptop-tab-btn,
+    .btn-req-budget,
+    .btn-pull-to-desk,
+    .cop31-banner-title,
+    .cop31-banner-badge,
+    .start-info-sec-title {
+      font-family: 'Outfit', 'Inter', sans-serif !important;
+      letter-spacing: -0.2px;
+    }
+
+    /* Official Bureaucratic Dossiers Retain Authentic Formal Typewriter */
+    .official-dossier,
+    .official-dossier *,
+    .dossier-header,
+    .dossier-subject,
+    .dossier-sender,
+    .dossier-body,
+    .dossier-meta,
+    .ink-stamp {
+      font-family: 'Courier Prime', 'Special Elite', monospace, serif !important;
+    }
+
+    /* Start Main Title with Modern Outfit */
+    .start-main-title {
+      font-size: 42px !important;
+      font-weight: 800 !important;
+      letter-spacing: -0.5px !important;
+      line-height: 1.15;
+      background: linear-gradient(135deg, #fef08a 0%, #38bdf8 45%, #34d399 75%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 2px 10px rgba(56, 189, 248, 0.45));
+    }
+
+    .start-badge {
+      font-size: 13.5px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.5px !important;
+      padding: 6px 16px !important;
+      border: 1.5px solid rgba(254, 240, 138, 0.6) !important;
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.45) 0%, rgba(13, 148, 136, 0.45) 100%) !important;
+    }
+
+    .btn-start-primary {
+      font-size: 16px !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.4px !important;
+      padding: 13px 24px !important;
+      border-radius: 12px !important;
+    }
+
+    .btn-start-secondary {
+      font-size: 14px !important;
+      font-weight: 700 !important;
+      padding: 11px 18px !important;
+      border-radius: 12px !important;
+    }
+
+    /* Dossier Decision Buttons in Outfit */
+    .btn-action {
+      font-size: 14px !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.2px !important;
+      border-radius: 10px !important;
+    }
+
+    .desk-postpone-badge {
+      font-size: 13.5px !important;
+      font-weight: 700 !important;
+    }
+
+    /* ============================================================
+       COP31 PORTAL BANNER & PARTICIPATION CARDS
+       ============================================================ */
+    .cop31-official-banner {
+      background: linear-gradient(135deg, #064e3b 0%, #047857 50%, #0284c7 100%);
+      border: 1.5px solid rgba(254, 240, 138, 0.6);
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      box-shadow: 0 4px 18px rgba(4, 120, 87, 0.4);
+    }
+
+    .cop31-banner-badge {
+      font-family: 'Outfit', sans-serif;
+      font-size: 10px;
+      font-weight: 800;
+      color: #fef08a;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .cop31-banner-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 17px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.25;
+    }
+
+    .cop31-banner-date {
+      font-size: 12px;
+      font-weight: 600;
+      color: #a7f3d0;
+      margin: 4px 0 8px;
+    }
+
+    .cop31-banner-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.95);
+      color: #064e3b;
+      font-family: 'Outfit', sans-serif;
+      font-size: 12.5px;
+      font-weight: 800;
+      padding: 7px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.15s ease, background 0.15s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .cop31-banner-link:hover {
+      transform: scale(1.03);
+      background: #fef08a;
+    }
+
+    .cop31-links-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 7px;
+      margin-top: 8px;
+    }
+
+    .cop31-link-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(30, 41, 59, 0.75);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 10px;
+      padding: 9px 12px;
+      text-decoration: none;
+      color: #e2e8f0;
+      transition: all 0.18s ease;
+    }
+
+    .cop31-link-card:hover {
+      background: rgba(14, 165, 233, 0.2);
+      border-color: #38bdf8;
+      transform: translateX(3px);
+    }
+
+    .cop31-link-icon {
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .cop31-link-meta {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 1px;
+    }
+
+    .cop31-link-meta strong {
+      font-family: 'Outfit', sans-serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+
+    .cop31-link-meta span {
+      font-size: 11px;
+      color: #94a3b8;
+    }
+
+    .cop31-link-arrow {
+      font-size: 14px;
+      color: #38bdf8;
+      font-weight: 800;
+    }
+
+    @media (max-width: 768px), (orientation: portrait) {
+      .start-main-title { font-size: 32px !important; }
+      .start-badge { font-size: 11.5px !important; }
+      .btn-start-primary { font-size: 15px !important; }
+      .btn-start-secondary { font-size: 13px !important; }
+      .btn-action { font-size: 13px !important; }
+    }
+    
 </style>
 </head>
 <body>
@@ -2163,10 +2389,10 @@
       <div class="start-crest">🏛️</div>
       <div class="start-gov-title">T.C. ÇEVRE, ŞEHİRCİLİK VE İKLİM DEĞİŞİKLİĞİ BAKANLIĞI</div>
       <h1 class="start-main-title">EKO-BÜROKRAT</h1>
-      <div class="start-badge">🌍 COP31 TÜRKİYE ZİRVE YÖNETİM SİMÜLASYONU</div>
+      <div class="start-badge">🌍 COP31 TÜRKİYE ANTALYA (9–20 KASIM 2026)</div>
       
       <p class="start-desc">
-        Yıl 2031. Birleşmiş Milletler İklim Değişikliği Konferansı (COP31) Türkiye'de toplanıyor! Çevre ve Şehircilik Müdürü olarak 5 günün var. Şehri iklim krizine dirençli hale getir, bütçeni yönet ve COP31 zirvesine alnın ak çık!
+        Tarih: 9–20 Kasım 2026. Birleşmiş Milletler İklim Değişikliği 31. Taraflar Konferansı (COP31) Antalya'da toplanıyor! Çevre, Şehircilik ve İklim Değişikliği İl Müdürü olarak 5 günün var. Şehri iklim krizine dirençli hale getir, bütçeyi yönet ve Antalya COP31 Zirvesi'ne alnın ak çık!
       </p>
 
       <div class="start-actions">
@@ -2237,78 +2463,136 @@
     </div>
   </div>
 
-  <!-- COP31 Information Modal -->
+    <!-- COP31 Official Portal & Real-World Citizen Participation Modal -->
   <div class="popup-overlay" id="cop31Modal">
-    <div class="start-info-card">
+    <div class="start-info-card cop31-portal-card" style="max-width: 600px;">
       <div class="start-info-head">
-        <div class="start-info-title">🌍 COP31 İKLİM ZİRVESİ NEDİR?</div>
+        <div class="start-info-title">🌍 COP31 İKLİM ZİRVESİ & PROJE BAŞVURULARI</div>
         <button class="start-info-close" id="btnCloseCop31">✕ Kapat</button>
       </div>
 
+      <!-- Official Banner Link -->
+      <div class="cop31-official-banner">
+        <div class="cop31-banner-badge">TÜRKİYE RESMİ DÖNEM BAŞKANLIĞI</div>
+        <div class="cop31-banner-title">COP31 Antalya 2026 BM İklim Değişikliği Konferansı</div>
+        <div class="cop31-banner-date">📅 9–20 Kasım 2026 • 📍 Antalya, Türkiye</div>
+        <a href="https://cop31.tr" target="_blank" rel="noopener noreferrer" class="cop31-banner-link">
+          🌐 Resmi Web Sitesini Ziyaret Et: cop31.tr ↗
+        </a>
+      </div>
+
+      <!-- Significance in Daily Life -->
       <div class="start-info-section">
-        <div class="start-info-sec-title">🏛️ Zirvenin Önemi</div>
+        <div class="start-info-sec-title">🌱 COP31'in Günlük Hayatımızdaki Önemi</div>
         <div class="start-info-sec-desc">
-          COP (Conference of the Parties), Birleşmiş Milletler İklim Değişikliği Çerçeve Sözleşmesi'nin en üst düzey karar organıdır. 2031 yılında 31. zirveye Türkiye ev sahipliği yapmaktadır.
+          COP31, sadece dünya liderlerinin zirvesi değil; şehirlerimizin kuraklık, aşırı sıcak hava dalgaları ve sel afetlerine karşı güçlendirilmesi, yeşil enerjiyle elektrik ve yakıt faturalarının düşürülmesi, sıfır atık ve temiz denizlerle gıda-su güvenliğinin sağlanması demektir. Türkiye'nin 2053 Net Sıfır Emisyon vizyonu Antalya'da şekillenmektedir.
         </div>
       </div>
 
+      <!-- Real-World Project Submissions -->
       <div class="start-info-section">
-        <div class="start-info-sec-title">🎯 Şehrimizin ve Müdürlüğün Rolü</div>
+        <div class="start-info-sec-title">💡 Kendi İklim Projeni Gerçek Hayatta Nasıl Sunarsın?</div>
         <div class="start-info-sec-desc">
-          Şehrimiz, COP31 zirvesinde dünya liderlerine ve BM denetçilerine "Örnek İklim Kenti" olarak sunulacak aday ildir. 5 gün boyunca alacağın kararlar şehrin karbon salımını, altyapı direncini ve uluslararası itibarını belirleyecek.
+          Bu simülasyondaki gibi çevre projeleri gerçekte vatandaşların ve gençlerin aktif katılımıyla hayata geçer. Fikrini veya okul projeni resmi olarak bakanlığa ve kurumlara iletebileceğin kanallar:
+        </div>
+        <div class="cop31-links-grid">
+          <a href="https://csb.gov.tr" target="_blank" rel="noopener noreferrer" class="cop31-link-card">
+            <span class="cop31-link-icon">🏛️</span>
+            <div class="cop31-link-meta">
+              <strong>Çevre ve Şehircilik Bakanlığı</strong>
+              <span>İl Müdürlükleri & Yerel Çevre Başvuruları</span>
+            </div>
+            <span class="cop31-link-arrow">↗</span>
+          </a>
+
+          <a href="https://iklim.gov.tr" target="_blank" rel="noopener noreferrer" class="cop31-link-card">
+            <span class="cop31-link-icon">🌿</span>
+            <div class="cop31-link-meta">
+              <strong>İklim Değişikliği Başkanlığı</strong>
+              <span>Karbon Azaltım & Hibe Çağrıları</span>
+            </div>
+            <span class="cop31-link-arrow">↗</span>
+          </a>
+
+          <a href="https://sifiratikvakfi.org" target="_blank" rel="noopener noreferrer" class="cop31-link-card">
+            <span class="cop31-link-icon">♻️</span>
+            <div class="cop31-link-meta">
+              <strong>Sıfır Atık Vakfı</strong>
+              <span>Döngüsel Ekonomi & Gençlik Projeleri</span>
+            </div>
+            <span class="cop31-link-arrow">↗</span>
+          </a>
+
+          <a href="https://tubitak.gov.tr" target="_blank" rel="noopener noreferrer" class="cop31-link-card">
+            <span class="cop31-link-icon">🎓</span>
+            <div class="cop31-link-meta">
+              <strong>TÜBİTAK 2204 İklim Yarışması</strong>
+              <span>Lise ve Üniversite Öğrenci Projeleri</span>
+            </div>
+            <span class="cop31-link-arrow">↗</span>
+          </a>
+
+          <a href="https://www.cimer.gov.tr" target="_blank" rel="noopener noreferrer" class="cop31-link-card">
+            <span class="cop31-link-icon">📬</span>
+            <div class="cop31-link-meta">
+              <strong>CİMER Çevre & Şehircilik Önerisi</strong>
+              <span>Doğrudan İdareye Resmi Proje ve Talep Bildirimi</span>
+            </div>
+            <span class="cop31-link-arrow">↗</span>
+          </a>
         </div>
       </div>
 
-      <div class="start-info-section">
-        <div class="start-info-sec-title">⚖️ 4 Temel Denge</div>
-        <div class="start-info-sec-desc">
-          Zirveye kadar <strong>Bütçe</strong>, <strong>Eko-Skor</strong>, <strong>Gençlik Güveni</strong> ve <strong>Belediye Başkanı Memnuniyeti</strong> dengelerini çökertmeden ayakta kalmalısın!
-        </div>
-      </div>
-
-      <button class="btn-start-primary" id="btnCop31Understood" style="margin-top: 6px; font-size: 13px; padding: 10px;">
+      <button class="btn-start-primary" id="btnCop31Understood" style="margin-top: 10px; font-size: 14px; padding: 11px;">
         ✓ Anlaşıldı, Menüye Dön
       </button>
     </div>
   </div>
 
-  <!-- Guide / How to Play Modal -->
+  <!-- Guide / How to Play Modal (Oyun Yönergesi & Mekanikleri) -->
   <div class="popup-overlay" id="guideModal">
-    <div class="start-info-card">
+    <div class="start-info-card" style="max-width: 580px;">
       <div class="start-info-head">
-        <div class="start-info-title">📋 MÜDÜRLÜK GÖREV YÖNERGESİ</div>
+        <div class="start-info-title">📋 MÜDÜRLÜK GÖREV YÖNERGESİ & OYUN REHBERİ</div>
         <button class="start-info-close" id="btnCloseGuide">✕ Kapat</button>
+      </div>
+
+      <div class="start-info-section">
+        <div class="start-info-sec-title">⚖️ Dört Kritik Denge</div>
+        <div class="start-info-sec-desc">
+          Zirveye kadar <strong>Bütçe (Kasa)</strong>, <strong>Eko-Skor</strong>, <strong>Gençlik Güveni</strong> ve <strong>Başkan Memnuniyeti</strong> dengelerini gözetmelisin! Kararlarının puan etkileri gün içinde gizlidir; akşam gazetesinde ortaya çıkar. Bütçen tükenirse veya Başkanın güveni %0 olursa görevden alınırsın!
+        </div>
       </div>
 
       <div class="start-info-section">
         <div class="start-info-sec-title">✍️ 1. Evrak Kararları</div>
         <div class="start-info-sec-desc">
-          Günde 4 resmi evrak masana gelir. Alttaki <strong>İmzala</strong> (Onayla) veya <strong>Reddet</strong> butonlarıyla ya da dokunmatik ekranda evrakı sağa/sola sürükleyerek kararını ver.
+          Günde 4 resmi evrak masana gelir. Alttaki <strong>İmzala (Onayla)</strong> veya <strong>Reddet</strong> butonlarıyla ya da dokunmatik ekranda evrakı sağa/sola sürükleyerek kararını ver.
         </div>
       </div>
 
       <div class="start-info-section">
         <div class="start-info-sec-title">📁 2. Sümen Altı (İncelemeye Al)</div>
         <div class="start-info-sec-desc">
-          Kararsız kaldığın dosyaları <strong>Sümen Altı</strong> yaparak 3 güne kadar erteleyebilirsin. Masadaki çekmeceden dosyayı istediğin zaman geri çağırabilirsin; 3 gün dolunca dosya zorunlu olarak masana gelir!
+          Kararsız kaldığın dosyaları <strong>Sümen Altı</strong> yaparak erteleyebilirsin. Masandaki sarı rozetten dosyayı istediğin zaman geri çağırabilirsin; 3 gün dolunca dosya zorunlu olarak masana gelir!
         </div>
       </div>
 
       <div class="start-info-section">
-        <div class="start-info-sec-title">💻 3. Makam Portalı (Dizüstü Bilgisayar)</div>
+        <div class="start-info-sec-title">💻 3. Makam Portalı (Bilgisayar Ekranı)</div>
         <div class="start-info-sec-desc">
-          Masandaki bilgisayara tıklayarak belediye kasandaki net parayı gör, Belediye Başkanı'ndan ek ödenek talep et ve bilim danışmanlarının tavsiye e-postalarını oku.
+          Masandaki All-in-One bilgisayar ekranına tıklayarak belediye kasasını gör, ek ödenek talep et ve bilim danışmanlarının tavsiye e-postalarını oku.
         </div>
       </div>
 
       <div class="start-info-section">
-        <div class="start-info-sec-title">📰 4. Bilinmezlik ve Akşam Gazetesi</div>
+        <div class="start-info-sec-title">🌇 4. Şehrin Pencereden Evrimi</div>
         <div class="start-info-sec-desc">
-          Kararlarının puan etkileri gün içinde gizlidir! Akşam mesai bitince çıkan <strong>Gündem Şehir Gazetesi</strong>'nde ve resmi idare raporunda karne puanlarını ve günün manşetini görürsün.
+          Makam odandaki büyük pencereden Antalya Körfezi görünür. Her günün sonunda aldığın kararların kümülatif puanına göre ertesi sabah penceredeki şehir (kirlilikten Solarpunk cennetine kadar 5 aşamada) dönüşür!
         </div>
       </div>
 
-      <button class="btn-start-primary" id="btnGuideUnderstood" style="margin-top: 6px; font-size: 13px; padding: 10px;">
+      <button class="btn-start-primary" id="btnGuideUnderstood" style="margin-top: 10px; font-size: 14px; padding: 11px;">
         ✓ Göreve Hazırım
       </button>
     </div>
@@ -2389,7 +2673,7 @@
 
         <div class="memo-meta-grid">
           <div>SAYI: <span id="memoNo">78241029-622-E.1042</span></div>
-          <div>TARİH: <span id="memoDate">14.11.2031</span></div>
+          <div>TARİH: <span id="memoDate">14.11.2026</span></div>
           <div>MUHATAP: <span id="memoSender">Gençlik Meclisi</span></div>
           <div>VAKİT: <span style="color:#0284c7; font-weight:800;" id="memoTimeSlot">SABAH (09:30)</span></div>
         </div>
@@ -2404,7 +2688,7 @@
         <div class="memo-footer">
           <span class="barcode-strip">|||| ||| ||||||| ||| |||||</span>
           <span id="memoRisk">Maliyet: Orta • Risk: Düşük</span>
-          <span>Paraf: Şb.Md. / 2031-COP</span>
+          <span>Paraf: Şb.Md. / 2026-COP</span>
         </div>
 
         <div class="desk-actions">
@@ -3875,14 +4159,14 @@
       let shareText = '';
       if (history.length > 0) {
         const last = history[history.length - 1];
-        shareText = `🌱 Eko-Bürokrat: Çevre Şehircilik Müdürlüğü simülasyonunda ${last.week}. haftayı ${last.grade} derecesiyle tamamladım! %${last.eco} Eko-Skor ve -%${last.co2Reduced} emisyon azaltımıyla şehrimi COP31 İklim Zirvesi'ne taşıdım. Sen de dene: ${window.location.origin + window.location.pathname}`;
+        shareText = `🌱 Eko-Bürokrat: Çevre Şehircilik Müdürlüğü simülasyonunda ${last.week}. haftayı ${last.grade} derecesiyle tamamladım! %${last.eco} Eko-Skor ve -%${last.co2Reduced} emisyon azaltımıyla şehrimi Antalya COP31 İklim Zirvesi (9-20 Kasım 2026)'ne taşıdım. Sen de dene: ${window.location.origin + window.location.pathname}`;
       } else {
         shareText = `🏛️ Eko-Bürokrat: Çevre Şehircilik Müdürlüğü simülasyonunu oynuyorum! Şehri iklim krizine dirençli kılıp COP31 Zirvesi'ne hazırlayabilecek misin? Hemen dene: ${window.location.origin + window.location.pathname}`;
       }
 
       if (navigator.share) {
         navigator.share({
-          title: 'Eko-Bürokrat: COP31 İklim Zirvesi',
+          title: 'Eko-Bürokrat: Antalya COP31 İklim Zirvesi (9-20 Kasım 2026)',
           text: shareText,
           url: window.location.origin + window.location.pathname
         }).catch(() => {});
@@ -4152,7 +4436,7 @@
       memoBody.textContent = `"${item.body}"`;
       memoRisk.textContent = (item.costText ? item.costText + ' • ' : '') + item.risk;
       memoNo.textContent = `78241029-622-E.${1040 + totalDossiersCompleted}`;
-      memoDate.textContent = `${10 + currentDay}.11.2031`;
+      memoDate.textContent = `${9 + currentDay}.11.2026`;
       const memoAvatar = document.getElementById('memoAvatar');
       if (memoAvatar && item.avatar) {
         memoAvatar.src = item.avatar;
@@ -4702,7 +4986,7 @@
       reportFinalBudget.textContent = `%${stats.budget} (Başarılı)`;
       reportFinalMayor.textContent = `%${stats.mayor} (Tam Güven)`;
       resultModal.classList.add('active');
-      saveSprintToHistory(grade, true, 'COP31 Zirvesi Başarısı');
+      saveSprintToHistory(grade, true, 'Antalya COP31 Zirvesi Başarısı (Kasım 2026)');
     }
 
     
