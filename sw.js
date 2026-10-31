@@ -1,9 +1,10 @@
-const CACHE_NAME = 'eko-burokrat-v8';
+const CACHE_NAME = 'karar-cop31-v9';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
   './fonts/Caveat-SemiBold.ttf',
+  './images/sembol.jpg',
   './images/start_bg_arkaplan.jpg',
   './images/yeni_ofis_cutout.png',
   './images/ofis_telefon_cutout.png',

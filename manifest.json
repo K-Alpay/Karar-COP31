@@ -1,7 +1,7 @@
 {
-  "name": "Eko-Bürokrat: Çevre Şehircilik Müdürlüğü",
-  "short_name": "Eko-Bürokrat",
-  "description": "COP31 İklim ve Sürdürülebilir Kent Yönetişimi Simülasyonu",
+  "name": "Karar: COP31 — Antalya İklim Zirvesi",
+  "short_name": "Karar: COP31",
+  "description": "Antalya COP31 İklim ve Sürdürülebilir Kent Yönetişimi Simülasyonu",
   "start_url": "./",
   "display": "standalone",
   "orientation": "any",

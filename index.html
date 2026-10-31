@@ -13,9 +13,9 @@
   <meta name="theme-color" content="#0f141c">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Eko-Bürokrat">
+  <meta name="apple-mobile-web-app-title" content="Karar: COP31">
   <link rel="apple-touch-icon" href="images/icon-192.png">
-  <title>Eko-Bürokrat: Çevre Şehircilik Müdürlüğü</title>
+  <title>Karar: COP31 — Antalya 2026 İklim Zirvesi Simülasyonu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Space+Grotesk:wght@600;700;800&family=Cinzel:wght@700;800;900&family=Playfair+Display:ital,wght@1,700;1,900&display=swap" rel="stylesheet">
@@ -902,6 +902,7 @@
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 30px rgba(212, 175, 55, 0.25);
     }
     .report-crest { font-size: 38px; margin-bottom: 6px; }
+    .report-crest-img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; margin: 0 auto 10px auto; display: block; border: 2px solid #e0b042; box-shadow: 0 4px 14px rgba(0,0,0,0.35); }
     .report-title { font-family: 'Cinzel', serif; font-size: 19px; font-weight: 800; color: #fef08a; margin-bottom: 4px; }
     .report-sub { font-size: 11px; color: #94a3b8; margin-bottom: 14px; }
     .grade-badge-circle { width: 68px; height: 68px; border-radius: 50%; background: linear-gradient(135deg, #d4af37 0%, #854d0e 100%); color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 34px; font-weight: 900; margin: 0 auto 14px; box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4); border: 3px solid #fef08a; }
@@ -2378,6 +2379,43 @@
       .btn-action { font-size: 13px !important; }
     }
     
+
+    /* Karar: COP31 Official Emblem Styles */
+    .start-crest-img {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 2.5px solid rgba(254, 240, 138, 0.75);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6), 0 0 16px rgba(56, 189, 248, 0.4);
+      margin: 0 auto 12px;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .start-crest-img:hover {
+      transform: scale(1.06) rotate(3deg);
+    }
+
+    .hud-logo-img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(254, 240, 138, 0.7);
+      object-fit: cover;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    .gov-coat-of-arms-img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(15, 23, 42, 0.3);
+      object-fit: cover;
+      margin: 0 auto 4px;
+      display: block;
+    }
+    
 </style>
 </head>
 <body>
@@ -2386,9 +2424,9 @@
        ============================================================ -->
   <div class="start-screen-overlay active" id="startScreen">
     <div class="start-card">
-      <div class="start-crest">🏛️</div>
+      <img src="images/sembol.jpg" alt="Karar: COP31 Sembolü" class="start-crest-img">
       <div class="start-gov-title">T.C. ÇEVRE, ŞEHİRCİLİK VE İKLİM DEĞİŞİKLİĞİ BAKANLIĞI</div>
-      <h1 class="start-main-title">EKO-BÜROKRAT</h1>
+      <h1 class="start-main-title">Karar: COP31</h1>
       <div class="start-badge">🌍 COP31 TÜRKİYE ANTALYA (9–20 KASIM 2026)</div>
       
       <p class="start-desc">
@@ -2603,7 +2641,8 @@
        ============================================================ */ -->
   <header class="top-floating-hud">
     <div class="hud-title">
-      🏛️ <span>T.C. ÇEVRE VE ŞEHİRCİLİK MÜDÜRLÜĞÜ</span>
+      <img src="images/sembol.jpg" alt="Logo" class="hud-logo-img">
+      <span>Karar: COP31</span>
     </div>
 
     <!-- Right: Day, Shift & Audio toggle -->
@@ -2662,7 +2701,7 @@
         <div class="ink-stamp postponed" id="stampPostponed">📁 İNCELEMEYE ALINDI • SÜMEN ALTI</div>
 
         <div class="gov-memo-header">
-          <div class="gov-coat-of-arms">🏛️</div>
+          <img src="images/sembol.jpg" alt="Mühür" class="gov-coat-of-arms-img">
           <div class="gov-header-title">T.C. ÇEVRE ŞEHİRCİLİK MÜDÜRLÜĞÜ</div>
           <div class="gov-header-dept">İklim Değişikliği ve Sıfır Atık Şube Müdürlüğü</div>
           <div class="petitioner-clip">
@@ -2934,7 +2973,7 @@
   <!-- 4: Final COP31 Report Card -->
   <div class="popup-overlay" id="resultModal">
     <div class="modal-report-card">
-      <div class="report-crest">🏛️</div>
+      <img src="images/sembol.jpg" alt="Karar: COP31 Sembolü" class="report-crest-img">
       <h2 class="report-title">COP31 ŞEHİR VE İKLİM KARNESİ</h2>
       <p class="report-sub">3 Günlük Kritik Mesai Resmî Değerlendirme Belgesi</p>
 
@@ -4015,11 +4054,7 @@
     const hudDayText = document.getElementById('hudDayText');
     const hudShiftText = document.getElementById('hudShiftText');
     
-    const windowVideo = document.getElementById('windowVideo');
-    const videoSource = document.getElementById('videoSource');
-    const skyBackdrop = document.getElementById('skyBackdrop');
-    const citySvg = document.getElementById('citySvg');
-
+                
     const trayReject = document.getElementById('trayReject');
     const trayAccept = document.getElementById('trayAccept');
     const btnReject = document.getElementById('btnReject');
@@ -4159,14 +4194,14 @@
       let shareText = '';
       if (history.length > 0) {
         const last = history[history.length - 1];
-        shareText = `🌱 Eko-Bürokrat: Çevre Şehircilik Müdürlüğü simülasyonunda ${last.week}. haftayı ${last.grade} derecesiyle tamamladım! %${last.eco} Eko-Skor ve -%${last.co2Reduced} emisyon azaltımıyla şehrimi Antalya COP31 İklim Zirvesi (9-20 Kasım 2026)'ne taşıdım. Sen de dene: ${window.location.origin + window.location.pathname}`;
+        shareText = `🌱 Karar: COP31 simülasyonunda ${last.week}. haftayı ${last.grade} derecesiyle tamamladım! %${last.eco} Eko-Skor ve -%${last.co2Reduced} emisyon azaltımıyla şehrimi Antalya COP31 İklim Zirvesi (9-20 Kasım 2026)'ne taşıdım. Sen de dene: ${window.location.origin + window.location.pathname}`;
       } else {
-        shareText = `🏛️ Eko-Bürokrat: Çevre Şehircilik Müdürlüğü simülasyonunu oynuyorum! Şehri iklim krizine dirençli kılıp COP31 Zirvesi'ne hazırlayabilecek misin? Hemen dene: ${window.location.origin + window.location.pathname}`;
+        shareText = `🏛️ Karar: COP31 simülasyonunu oynuyorum! Şehri iklim krizine dirençli kılıp COP31 Zirvesi'ne hazırlayabilecek misin? Hemen dene: ${window.location.origin + window.location.pathname}`;
       }
 
       if (navigator.share) {
         navigator.share({
-          title: 'Eko-Bürokrat: Antalya COP31 İklim Zirvesi (9-20 Kasım 2026)',
+          title: 'Karar: COP31: Antalya COP31 İklim Zirvesi (9-20 Kasım 2026)',
           text: shareText,
           url: window.location.origin + window.location.pathname
         }).catch(() => {});
@@ -4247,154 +4282,6 @@
     const btnRestart = document.getElementById('btnRestart');
 
     /* ============================================================
-       VIDEO CONTROLLER & 5-TIER FALLBACK SKYLINE
-       ============================================================ */
-    let currentVideoPath = '';
-
-    function getTargetVideoPath(ecoScore) {
-      if (ecoScore > 80) return 'videos/city_5.mp4';
-      if (ecoScore > 60) return 'videos/city_4.mp4';
-      if (ecoScore > 40) return 'videos/city_3.mp4';
-      if (ecoScore > 20) return 'videos/city_2.mp4';
-      return 'videos/city_1.mp4';
-    }
-
-    function updateVideoSource(ecoScore) {
-      const targetPath = getTargetVideoPath(ecoScore);
-      if (targetPath !== currentVideoPath) {
-        currentVideoPath = targetPath;
-        videoSource.src = targetPath;
-        windowVideo.load();
-        windowVideo.play().then(() => {
-          windowVideo.classList.add('active');
-        }).catch(() => {
-          windowVideo.classList.remove('active');
-        });
-      }
-    }
-
-    windowVideo.addEventListener('loadeddata', () => windowVideo.classList.add('active'));
-    windowVideo.addEventListener('error', () => windowVideo.classList.remove('active'));
-
-    function renderWindowView(ecoScore) {
-      updateVideoSource(ecoScore);
-
-      if (ecoScore <= 20) {
-        skyBackdrop.style.background = "linear-gradient(180deg, #451010 0%, #200909 50%, #120505 100%)";
-        citySvg.innerHTML = `
-          <rect x="30" y="70" width="45" height="110" fill="#241313" />
-          <rect x="42" y="45" width="16" height="25" fill="#3b1d1d" />
-          <circle class="smoke-puff" cx="50" cy="40" r="12" fill="#704e4e" />
-          <rect x="100" y="60" width="55" height="120" fill="#1c0f0f" />
-          <rect x="180" y="35" width="50" height="145" fill="#2b1515" />
-          <rect x="195" y="15" width="14" height="20" fill="#422020" />
-          <circle class="smoke-puff" cx="202" cy="12" r="14" fill="#805b5b" style="animation-delay: 0.8s;" />
-          <rect x="260" y="80" width="65" height="100" fill="#1a0d0d" />
-          <rect x="350" y="55" width="55" height="125" fill="#261212" />
-          <rect x="430" y="45" width="50" height="135" fill="#331919" />
-          <circle class="smoke-puff" cx="452" cy="40" r="12" fill="#755252" style="animation-delay: 1.3s;" />
-          <rect x="510" y="75" width="70" height="105" fill="#1f0e0e" />
-          <rect x="0" y="170" width="600" height="10" fill="#2d1710" />
-        `;
-      } else if (ecoScore <= 40) {
-        skyBackdrop.style.background = "linear-gradient(180deg, #3d3528 0%, #221d15 50%, #15120c 100%)";
-        citySvg.innerHTML = `
-          <rect x="35" y="75" width="45" height="105" fill="#24211a" />
-          <rect x="48" y="55" width="14" height="20" fill="#383329" />
-          <circle class="smoke-puff" cx="55" cy="50" r="9" fill="#6e6757" />
-          <rect x="105" y="65" width="55" height="115" fill="#29261f" />
-          <rect x="185" y="45" width="45" height="135" fill="#363127" />
-          <circle class="smoke-puff" cx="205" cy="40" r="10" fill="#78705f" style="animation-delay: 1s;" />
-          <rect x="255" y="80" width="60" height="100" fill="#24201a" />
-          <rect x="345" y="60" width="55" height="120" fill="#302b22" />
-          <rect x="430" y="55" width="50" height="125" fill="#2e2920" />
-          <rect x="505" y="70" width="65" height="110" fill="#26221b" />
-          <rect x="0" y="170" width="600" height="10" fill="#332a1d" />
-        `;
-      } else if (ecoScore <= 60) {
-        skyBackdrop.style.background = "linear-gradient(180deg, #1e3a5f 0%, #0f2438 60%, #0a1724 100%)";
-        citySvg.innerHTML = `
-          <rect x="35" y="80" width="50" height="100" fill="#1e293b" />
-          <rect x="42" y="75" width="36" height="5" fill="#38bdf8" />
-          <rect x="110" y="55" width="60" height="125" fill="#334155" />
-          <polygon points="110,55 140,30 170,55" fill="#475569" />
-          <circle cx="205" cy="140" r="22" fill="#15803d" />
-          <circle cx="230" cy="135" r="28" fill="#166534" />
-          <rect x="280" y="50" width="55" height="130" fill="#1e293b" />
-          <rect x="365" y="70" width="50" height="110" fill="#334155" />
-          <rect x="440" y="60" width="60" height="120" fill="#1e293b" />
-          <rect x="525" y="75" width="55" height="105" fill="#293548" />
-          <rect x="0" y="170" width="600" height="10" fill="#0284c7" />
-        `;
-      } else if (ecoScore <= 80) {
-        skyBackdrop.style.background = "linear-gradient(180deg, #0e5040 0%, #08382c 60%, #04211a 100%)";
-        citySvg.innerHTML = `
-          <g transform="translate(35, 45)">
-            <rect x="19" y="24" width="2" height="60" fill="#f8fafc" />
-            <circle cx="20" cy="24" r="3" fill="#38bdf8" />
-            <g class="wind-turbine-blade" style="transform-origin: 20px 24px;">
-              <line x1="20" y1="24" x2="20" y2="6" stroke="#f8fafc" stroke-width="2" />
-              <line x1="20" y1="24" x2="36" y2="33" stroke="#f8fafc" stroke-width="2" />
-              <line x1="20" y1="24" x2="4" y2="33" stroke="#f8fafc" stroke-width="2" />
-            </g>
-          </g>
-          <rect x="95" y="60" width="60" height="120" fill="#065f46" rx="4" />
-          <rect x="100" y="55" width="50" height="5" fill="#38bdf8" />
-          <circle cx="180" cy="140" r="26" fill="#10b981" />
-          <circle cx="215" cy="130" r="30" fill="#059669" />
-          <rect x="270" y="45" width="60" height="135" fill="#047857" rx="4" />
-          <circle cx="300" cy="38" r="10" fill="#34d399" />
-          <rect x="360" y="65" width="55" height="115" fill="#065f46" />
-          <rect x="440" y="55" width="60" height="125" fill="#047857" />
-          <g transform="translate(520, 50)">
-            <rect x="19" y="24" width="2" height="55" fill="#f8fafc" />
-            <circle cx="20" cy="24" r="3" fill="#38bdf8" />
-            <g class="wind-turbine-blade" style="transform-origin: 20px 24px; animation-duration: 2.5s;">
-              <line x1="20" y1="24" x2="20" y2="6" stroke="#f8fafc" stroke-width="2" />
-              <line x1="20" y1="24" x2="36" y2="33" stroke="#f8fafc" stroke-width="2" />
-              <line x1="20" y1="24" x2="4" y2="33" stroke="#f8fafc" stroke-width="2" />
-            </g>
-          </g>
-          <rect x="0" y="168" width="600" height="12" fill="#059669" />
-        `;
-      } else {
-        skyBackdrop.style.background = "linear-gradient(180deg, #065f46 0%, #064e3b 50%, #022c22 100%)";
-        citySvg.innerHTML = `
-          <g class="bird-flock">
-            <path d="M 10 25 Q 16 18 22 25 Q 28 18 34 25" stroke="#a7f3d0" stroke-width="2" fill="none" />
-            <path d="M 32 35 Q 37 30 42 35 Q 47 30 52 35" stroke="#a7f3d0" stroke-width="1.6" fill="none" />
-          </g>
-          <g transform="translate(35, 30)">
-            <rect x="19" y="24" width="2" height="70" fill="#f8fafc" />
-            <circle cx="20" cy="24" r="3" fill="#38bdf8" />
-            <g class="wind-turbine-blade" style="transform-origin: 20px 24px;">
-              <line x1="20" y1="24" x2="20" y2="4" stroke="#f8fafc" stroke-width="2" />
-              <line x1="20" y1="24" x2="37" y2="34" stroke="#f8fafc" stroke-width="2" />
-              <line x1="20" y1="24" x2="3" y2="34" stroke="#f8fafc" stroke-width="2" />
-            </g>
-          </g>
-          <rect x="100" y="55" width="65" height="125" fill="#047857" rx="8" />
-          <circle cx="132" cy="48" r="14" fill="#10b981" />
-          <path d="M 190 180 L 190 50 Q 235 25 280 50 L 280 180 Z" fill="#065f46" />
-          <circle cx="235" cy="65" r="12" fill="#34d399" />
-          <circle cx="320" cy="140" r="30" fill="#10b981" />
-          <circle cx="355" cy="135" r="26" fill="#059669" />
-          <g transform="translate(490, 35)">
-            <rect x="19" y="24" width="2" height="65" fill="#f8fafc" />
-            <circle cx="20" cy="24" r="3" fill="#38bdf8" />
-            <g class="wind-turbine-blade" style="transform-origin: 20px 24px; animation-duration: 2.3s;">
-              <line x1="20" y1="24" x2="20" y2="4" stroke="#f8fafc" stroke-width="2" />
-              <line x1="20" y1="24" x2="37" y2="34" stroke="#f8fafc" stroke-width="2" />
-              <line x1="20" y1="24" x2="3" y2="34" stroke="#f8fafc" stroke-width="2" />
-            </g>
-          </g>
-          <rect x="400" y="60" width="65" height="120" fill="#047857" rx="6" />
-          <rect x="0" y="164" width="600" height="16" fill="#059669" />
-        `;
-      }
-    }
-
-    /* ============================================================
        LOAD MEMO & METRICS
        ============================================================ */
     function updateMetrics(deltas = null) {
@@ -4409,7 +4296,7 @@
       }
       updateMayorLaptopPortal();
 
-      renderWindowView(stats.eco);
+      // Window changes on next day
       checkGameOver();
     }
 
@@ -4758,8 +4645,8 @@
     window.addEventListener('touchmove', (e) => { if (isDragging) onDragMove(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
     window.addEventListener('touchend', onDragEnd);
 
-    btnSign.addEventListener('click', () => executeDecision('accept'));
-    btnReject.addEventListener('click', () => executeDecision('reject'));
+    btnSign.addEventListener('click', (e) => { e.stopPropagation(); executeDecision('accept'); });
+    btnReject.addEventListener('click', (e) => { e.stopPropagation(); executeDecision('reject'); });
     trayAccept.addEventListener('click', () => executeDecision('accept'));
     trayReject.addEventListener('click', () => executeDecision('reject'));
 
@@ -4767,7 +4654,15 @@
     /* ============================================================
        POSTPONE (SÜMEN ALTI) & LAPTOP & DRAWER LOGIC
        ============================================================ */
-    btnPostpone.addEventListener('click', () => executeDecision('postpone'));
+    btnPostpone.addEventListener('click', (e) => { e.stopPropagation(); executeDecision('postpone'); });
+
+    /* Stop drag gesture when interacting with action buttons directly */
+    [btnSign, btnReject, btnPostpone].forEach(btn => {
+      if (btn) {
+        btn.addEventListener('mousedown', (e) => e.stopPropagation());
+        btn.addEventListener('touchstart', (e) => e.stopPropagation(), { passive: true });
+      }
+    });
 
     function updateDrawerBadge() {
       if (drawerBadgeText) {
