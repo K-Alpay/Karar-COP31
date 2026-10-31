@@ -1,4 +1,4 @@
-const CACHE_NAME = 'karar-cop31-v9';
+const CACHE_NAME = 'karar-cop31-v10';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -25,7 +25,8 @@ const ASSETS_TO_CACHE = [
   './images/ece.png',
   './images/kerem.png',
   './images/icon-192.png',
-  './images/icon-512.png'
+  './images/icon-512.png',
+  './audio/The_Unsigned_Decree.mp3'
 ];
 
 self.addEventListener('install', (event) => {

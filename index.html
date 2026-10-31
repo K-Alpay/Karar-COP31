@@ -1534,9 +1534,12 @@
     }
 
     .start-footer-credit {
-      font-size: 10px;
-      color: #64748b;
-      margin-top: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #94a3b8;
+      margin-top: 6px;
+      letter-spacing: 0.4px;
+      opacity: 0.9;
     }
 
     /* Start Screen Info Modals */
@@ -2425,12 +2428,12 @@
   <div class="start-screen-overlay active" id="startScreen">
     <div class="start-card">
       <img src="images/sembol.jpg" alt="Karar: COP31 Sembolü" class="start-crest-img">
-      <div class="start-gov-title">T.C. ÇEVRE, ŞEHİRCİLİK VE İKLİM DEĞİŞİKLİĞİ BAKANLIĞI</div>
+      
       <h1 class="start-main-title">Karar: COP31</h1>
       <div class="start-badge">🌍 COP31 TÜRKİYE ANTALYA (9–20 KASIM 2026)</div>
       
       <p class="start-desc">
-        Tarih: 9–20 Kasım 2026. Birleşmiş Milletler İklim Değişikliği 31. Taraflar Konferansı (COP31) Antalya'da toplanıyor! Çevre, Şehircilik ve İklim Değişikliği İl Müdürü olarak 5 günün var. Şehri iklim krizine dirençli hale getir, bütçeyi yönet ve Antalya COP31 Zirvesi'ne alnın ak çık!
+        Tarih: 9–20 Kasım 2026. Birleşmiş Milletler İklim Değişikliği 31. Taraflar Konferansı (COP31) Antalya'da toplanıyor! Çevre, Şehircilik ve İklim Değişikliği İl Müdürü olarak 3 günün var. Şehri iklim krizine dirençli hale getir, bütçeyi yönet ve Antalya COP31 Zirvesi'ne alnın ak çık!
       </p>
 
       <div class="start-actions">
@@ -2449,7 +2452,7 @@
       </div>
 
       <div class="start-footer-credit">
-        GameUP Türkiye Programı Oyun Hackathonu 2026 • Solo Geliştirici: Nur
+        🌿 Geliştirici: Kübranur Alpay
       </div>
     </div>
   </div>
@@ -3008,6 +3011,34 @@
        ============================================================ */
     let soundEnabled = true;
     let audioCtx = null;
+
+    /* ============================================================
+       BACKGROUND MUSIC: "The Unsigned Decree"
+       ============================================================ */
+    const bgMusic = new Audio('audio/The_Unsigned_Decree.mp3');
+    bgMusic.loop = true;
+    bgMusic.volume = 0.35;
+    let musicStarted = false;
+
+    function playBgMusic() {
+      if (!soundEnabled) return;
+      bgMusic.play().then(() => {
+        musicStarted = true;
+      }).catch(err => {
+        // Autoplay requires initial user gesture
+      });
+    }
+
+    function pauseBgMusic() {
+      bgMusic.pause();
+    }
+
+    // Auto-start music on first user interaction anywhere
+    window.addEventListener('pointerdown', () => {
+      if (soundEnabled && !musicStarted) {
+        playBgMusic();
+      }
+    }, { once: true });
     
     function initAudio() {
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -3152,7 +3183,12 @@
       soundEnabled = !soundEnabled;
       const btn = document.getElementById('btnSoundToggle');
       btn.textContent = soundEnabled ? "🔊 Açık" : "🔇 Kapalı";
-      if (soundEnabled) initAudio();
+      if (soundEnabled) {
+        initAudio();
+        playBgMusic();
+      } else {
+        pauseBgMusic();
+      }
     });
 
     /* ============================================================
@@ -4241,6 +4277,7 @@
     if (btnStartGame) {
       btnStartGame.addEventListener('click', () => {
         startScreen.classList.remove('active');
+        playBgMusic();
         soundPaperSlide();
       });
     }
