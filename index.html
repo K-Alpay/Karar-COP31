@@ -217,30 +217,33 @@
     .desktop-only { display: block; }
     .mobile-only { display: none; }
 
-    /* Default Desktop / Landscape Styles */
+    /* Default Desktop / Landscape Styles: Exact 2752x1536 Aspect Ratio Match */
     .office-stage {
-      width: 100vw;
-      height: 100vh;
-      max-width: 1536px;
-      max-height: 1024px;
-      aspect-ratio: 1536 / 1024;
       position: relative;
+      aspect-ratio: 2752 / 1536;
+      width: min(100vw, calc(100vh * (2752 / 1536)));
+      height: min(100vh, calc(100vw * (1536 / 2752)));
+      max-width: 2752px;
+      max-height: 1536px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.95);
     }
 
+    /* Pixel-measured coordinates matching the transparent cutout window in yeni_ofis_cutout.png */
     .window-viewport {
       position: absolute;
-      top: 15.14%;
-      left: 25.72%;
-      width: 49.48%;
-      height: 31.25%;
+      top: 9.245%;
+      left: 24.855%;
+      width: 50.690%;
+      height: 38.216%;
       overflow: hidden;
       z-index: 1;
+      pointer-events: none;
       background: #090e15;
+      border-radius: 2px;
     }
 
     .office-artwork {
@@ -248,7 +251,7 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: fill;
       z-index: 5;
       pointer-events: none;
     }
@@ -279,23 +282,22 @@
       .mobile-only { display: block !important; }
 
       .office-stage {
-        max-width: 100vw;
-        max-height: 100vh;
-        max-height: 100dvh;
-        width: 100vw;
-        height: 100vh;
-        height: 100dvh;
-        aspect-ratio: 1024 / 1536;
-        background: #090e15;
+        position: relative !important;
+        aspect-ratio: 1408 / 3040 !important;
+        width: min(100vw, calc(100dvh * (1408 / 3040))) !important;
+        height: min(100dvh, calc(100vw * (3040 / 1408))) !important;
+        max-width: 100vw !important;
+        max-height: 100dvh !important;
+        background: #090e15 !important;
       }
 
-      /* Mobile 3-pane Window Viewport matching Designer(12).png */
+      /* Pixel-measured coordinates matching transparent cutout in ofis_telefon_cutout.png */
       .window-viewport {
-        top: 19.21%;
-        left: 24.41%;
-        width: 56.15%;
-        height: 22.46%;
-        border-radius: 4px;
+        left: 30.966% !important;
+        top: 24.539% !important;
+        width: 39.276% !important;
+        height: 23.026% !important;
+        border-radius: 2px !important;
       }
 
       /* [Mobile Hotline Removed] */
@@ -2016,10 +2018,10 @@
        ============================================================ */
     .window-viewport {
       position: absolute;
-      top: 9.2%;
-      left: 24.8%;
-      width: 50.8%;
-      height: 38.3%;
+      top: 9.245%;
+      left: 24.855%;
+      width: 50.690%;
+      height: 38.216%;
       overflow: hidden;
       z-index: 1;
       pointer-events: none;
@@ -2701,7 +2703,10 @@
         <strong id="hudDayText">📅 1. GÜN</strong> • <span id="hudShiftText">Sabah (1/4)</span>
       </div>
       <button class="hud-menu-btn" id="btnHudMenu" title="Başlangıç Menüsü & Rehber">🏠 Menü</button>
-      <button class="sound-toggle-btn" id="btnSoundToggle">🔊 Açık</button>
+      <div style="display:flex; align-items:center; gap:6px; background: rgba(255,255,255,0.06); padding: 3px 8px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12);">
+        <button class="sound-toggle-btn" id="btnSoundToggle" style="border:none; background:transparent; padding:0; cursor:pointer;" title="Müziği Aç / Kapat">🔊</button>
+        <input type="range" id="musicVolumeSlider" min="0" max="1" step="0.05" value="0.35" style="width: 52px; height: 5px; accent-color: #34d399; cursor: pointer; opacity: 0.85;" title="Müzik Sesi Ayarı">
+      </div>
     </div>
   </header>
 
@@ -2980,23 +2985,45 @@
 
       <!-- Tab 3: Danışman E-Postası (Sayfa 3) -->
       <div class="laptop-tab-pane" id="paneConsultant">
-        <div class="consultant-email-box">
-          <div class="consultant-profile">
-            <img src="images/selin.png" class="consultant-avatar" id="emailConsultantAvatar" alt="Danışman">
-            <div>
-              <div class="consultant-name" id="emailConsultantName">Dr. Selin</div>
-              <div class="consultant-role" id="emailConsultantRole">Biyoteknoloji ve Sıfır Atık Danışmanı</div>
+        <div style="margin-bottom: 4px;">
+          <div style="font-size: 10px; color: #94a3b8; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase;">İNCELENEN MASADAKİ DOSYA:</div>
+          <div style="font-family:'Space Grotesk',sans-serif; font-size: 13px; font-weight: 800; color:#fef08a; margin-top: 2px;" id="emailMemoSubject">KONU: Dosya Başlığı</div>
+        </div>
+
+        <!-- 1. Danışman: Olumlu Yön / Avantajlar (Lehte Görüş) -->
+        <div class="consultant-email-box" style="border-left: 3px solid #10b981; background: rgba(16, 185, 129, 0.06); padding: 12px; gap: 8px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="consultant-profile" style="display:flex; align-items:center; gap:8px;">
+              <img src="images/selin.png" class="consultant-avatar" id="emailConsultantAvatarPro" alt="Danışman" style="width:36px; height:36px; border-radius:50%; border:1px solid #10b981; object-fit:cover;">
+              <div>
+                <div class="consultant-name" id="emailConsultantNamePro" style="font-size:12px; font-weight:800; color:#f1f5f9;">Danışman 1</div>
+                <div class="consultant-role" id="emailConsultantRolePro" style="font-size:10px; color:#38bdf8; font-weight:600;">Uzmanlık Rolü</div>
+              </div>
             </div>
+            <span style="font-size: 9.5px; font-weight: 800; padding: 2px 7px; border-radius: 6px; background: rgba(16,185,129,0.2); color: #34d399; border: 1px solid rgba(16,185,129,0.35);">🟢 LEHTE (Kazanım)</span>
           </div>
-          <div>
-            <div style="font-size: 11px; color: #94a3b8; font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">İNCELENEN DOSYA:</div>
-            <div style="font-family:'Space Grotesk',sans-serif; font-size: 13px; font-weight: 800; color:#fef08a;" id="emailMemoSubject">KONU: Okul Yemekhanesi Biyogaz Pilot Tesisi</div>
-          </div>
-          <div class="consultant-advice-text" id="emailConsultantAdvice">
-            "Müdür Bey, lisenin organik atık verimi beklediğimizden yüksek..."
+          <div class="consultant-advice-text" id="emailConsultantAdvicePro" style="border-left: 3px solid #10b981; font-size: 11.5px; padding: 8px 10px; line-height: 1.45;">
+            "Olumlu görüş..."
           </div>
         </div>
-      </div>
+
+        <!-- 2. Danışman: Çekince / Risk / Bütçe Uyarısı (Aleyhte Görüş) -->
+        <div class="consultant-email-box" style="border-left: 3px solid #f59e0b; background: rgba(245, 158, 11, 0.06); padding: 12px; gap: 8px;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div class="consultant-profile" style="display:flex; align-items:center; gap:8px;">
+              <img src="images/ekrem.png" class="consultant-avatar" id="emailConsultantAvatarCon" alt="Danışman" style="width:36px; height:36px; border-radius:50%; border:1px solid #f59e0b; object-fit:cover;">
+              <div>
+                <div class="consultant-name" id="emailConsultantNameCon" style="font-size:12px; font-weight:800; color:#f1f5f9;">Danışman 2</div>
+                <div class="consultant-role" id="emailConsultantRoleCon" style="font-size:10px; color:#fbbf24; font-weight:600;">Maliye & Risk</div>
+              </div>
+            </div>
+            <span style="font-size: 9.5px; font-weight: 800; padding: 2px 7px; border-radius: 6px; background: rgba(245,158,11,0.2); color: #fbbf24; border: 1px solid rgba(245,158,11,0.35);">⚠️ ÇEKİNCE (Risk)</span>
+          </div>
+          <div class="consultant-advice-text" id="emailConsultantAdviceCon" style="border-left: 3px solid #f59e0b; font-size: 11.5px; padding: 8px 10px; line-height: 1.45;">
+            "Risk ve çekince uyarısı..."
+          </div>
+        </div>
+      </div></div>
     </div>
   </div>
 
@@ -3016,6 +3043,59 @@
       </div>
       <div class="drawer-list" id="drawerList">
         <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       DRAWER FULL WARNING MODAL (UI UYUMLU MAKAM UYARISI)
+       ============================================================ -->
+  <div class="popup-overlay" id="drawerFullModal" style="z-index: 2600;">
+    <div class="drawer-card" style="border: 2px solid #ef4444; box-shadow: 0 25px 60px rgba(0,0,0,0.95), 0 0 35px rgba(239, 68, 68, 0.4); max-width: 460px; text-align: center; gap: 14px; padding: 22px;">
+      <div style="font-size: 38px; line-height: 1;">📂⚠️</div>
+      <div>
+        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 800; color: #f87171; letter-spacing: 0.5px;">
+          SÜMEN ALTI ÇEKMECESİ DOLU!
+        </div>
+        <div style="font-size: 11px; font-weight: 700; color: #fca5a5; margin-top: 3px;">
+          Yasal İnceleme Kapasitesi (3/3) Doldu
+        </div>
+      </div>
+      <p style="font-size: 12.5px; color: #cbd5e1; line-height: 1.55; background: rgba(0, 0, 0, 0.35); padding: 12px 14px; border-radius: 10px; border-left: 3px solid #ef4444; text-align: left;">
+        Makam odanızdaki sümen altı kapasitesi tamamen dolmuştur (3/3). Masanızdaki evrakı incelemeye alabilmek için lütfen önce çekmecedeki dosyalardan en az birini karara bağlayınız.
+      </p>
+      <div style="display: flex; gap: 10px; margin-top: 4px;">
+        <button id="btnGoToDrawer" style="flex: 1.3; background: #eab308; color: #0f172a; border: none; padding: 11px 14px; border-radius: 10px; font-weight: 800; font-size: 12.5px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px; box-shadow: 0 4px 15px rgba(234, 179, 8, 0.4);">
+          📁 Çekmeceyi Aç & İncele
+        </button>
+        <button id="btnCloseDrawerFull" style="flex: 1; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.18); color: #cbd5e1; padding: 11px; border-radius: 10px; font-weight: 700; font-size: 12px; cursor: pointer;">
+          ✕ Kapat
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       OFFICE NOTICE MODAL (GENEL MAKAM BİLGİLENDİRMESİ)
+       ============================================================ -->
+  <div class="popup-overlay" id="officeNoticeModal" style="z-index: 2650;">
+    <div class="drawer-card" style="border: 2px solid #38bdf8; box-shadow: 0 25px 60px rgba(0,0,0,0.95), 0 0 35px rgba(56, 189, 248, 0.4); max-width: 460px; text-align: center; gap: 14px; padding: 22px;">
+      <div style="font-size: 36px; line-height: 1;" id="officeNoticeIcon">🔔</div>
+      <div>
+        <div style="font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 800; color: #38bdf8; letter-spacing: 0.5px;" id="officeNoticeTitle">
+          MAKAM BİLGİLENDİRMESİ
+        </div>
+        <div style="font-size: 11px; font-weight: 700; color: #94a3b8; margin-top: 3px;" id="officeNoticeSub">
+          Resmî İdare Bildirimi
+        </div>
+      </div>
+      <p style="font-size: 12.5px; color: #cbd5e1; line-height: 1.55; background: rgba(0, 0, 0, 0.35); padding: 12px 14px; border-radius: 10px; border-left: 3px solid #38bdf8; text-align: left;" id="officeNoticeBody">
+        Bildirim metni buraya gelir.
+      </p>
+      <div style="display: flex; justify-content: center; margin-top: 4px;">
+        <button id="btnCloseOfficeNotice" style="width: 100%; max-width: 200px; background: #38bdf8; color: #0f172a; border: none; padding: 11px 16px; border-radius: 10px; font-weight: 800; font-size: 12.5px; cursor: pointer; box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);">
+          Tamam (Devam Et)
+        </button>
       </div>
     </div>
   </div>
@@ -3049,6 +3129,7 @@
       </div>
 
       <button class="btn-restart" id="btnRestart">Yeni Döneme Başla</button>
+      <button id="btnShareFinalResult" style="margin-top:10px; width:100%; padding:10px; background:rgba(56,189,248,0.15); border:1px solid #38bdf8; border-radius:10px; color:#38bdf8; font-size:12px; font-weight:800; cursor:pointer;">📤 Karneni Paylaş / Kopyala</button>
     </div>
   </div>
 
@@ -3086,6 +3167,37 @@
         playBgMusic();
       }
     }, { once: true });
+
+    // Stop / pause background music when tab is hidden or window loses focus (mobile background or PC tab switch)
+    let wasMusicPlayingBeforeHidden = false;
+
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        if (!bgMusic.paused) {
+          wasMusicPlayingBeforeHidden = true;
+          pauseBgMusic();
+        }
+      } else {
+        if (wasMusicPlayingBeforeHidden && soundEnabled && !isGameOver) {
+          playBgMusic();
+          wasMusicPlayingBeforeHidden = false;
+        }
+      }
+    });
+
+    window.addEventListener('blur', () => {
+      if (!bgMusic.paused) {
+        wasMusicPlayingBeforeHidden = true;
+        pauseBgMusic();
+      }
+    });
+
+    window.addEventListener('focus', () => {
+      if (wasMusicPlayingBeforeHidden && soundEnabled && !isGameOver && !document.hidden) {
+        playBgMusic();
+        wasMusicPlayingBeforeHidden = false;
+      }
+    });
     
     function initAudio() {
       if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -3226,17 +3338,39 @@
       });
     }
 
-    document.getElementById('btnSoundToggle').addEventListener('click', () => {
+    const btnSoundToggle = document.getElementById('btnSoundToggle');
+    const musicVolumeSlider = document.getElementById('musicVolumeSlider');
+
+    btnSoundToggle.addEventListener('click', () => {
       soundEnabled = !soundEnabled;
-      const btn = document.getElementById('btnSoundToggle');
-      btn.textContent = soundEnabled ? "🔊 Açık" : "🔇 Kapalı";
+      btnSoundToggle.textContent = soundEnabled ? "🔊" : "🔇";
       if (soundEnabled) {
         initAudio();
+        const currentVol = musicVolumeSlider ? parseFloat(musicVolumeSlider.value) : 0.35;
+        bgMusic.volume = currentVol > 0 ? currentVol : 0.35;
+        if (musicVolumeSlider && currentVol === 0) musicVolumeSlider.value = 0.35;
         playBgMusic();
       } else {
         pauseBgMusic();
       }
     });
+
+    if (musicVolumeSlider) {
+      musicVolumeSlider.addEventListener('input', (e) => {
+        const vol = parseFloat(e.target.value);
+        bgMusic.volume = vol;
+        if (vol === 0) {
+          soundEnabled = false;
+          btnSoundToggle.textContent = "🔇";
+          pauseBgMusic();
+        } else {
+          soundEnabled = true;
+          btnSoundToggle.textContent = "🔊";
+          initAudio();
+          playBgMusic();
+        }
+      });
+    }
 
     /* ============================================================
        GAME PACING: 3 DAYS (4 DOSSIERS PER DAY = 12 DOSSIERS)
@@ -3270,6 +3404,7 @@
     let todayNewsList = [];
 
     let budgetRequestedCount = 0; // Başkan'dan bütçe isteme sayacı (Sayfa 2 Karar Ağacı)
+    let pendingChainMemos = [];   // Ön-Chain karar ağacı ile ertesi güne aktarılan evraklar
     let postponedPile = [];       // Sümen altı / Pas geçilen evraklar (Sayfa 3)
 
     const timeSlots = ["Sabah (09:30)", "Öğle (12:00)", "İkindi (15:00)", "Akşamüstü (17:30)"];
@@ -3287,11 +3422,19 @@
         "costText": "Maliyet: 85.000 ₺ • Hibe",
         "body": "Pansiyon yemekhanesi organik mutfak atıklarının fermantasyonuyla biyogaz elde edilmesi ve karbon salımının %30 azaltılması hedeflenmektedir. 85.000 TL ar-ge hibe tahsisini olurlarınıza arz ederim.",
         "risk": "Risk: Düşük • COP31 Teması: Sıfır Atık",
-        "consultant": {
-            "name": "Dr. Selin",
-            "role": "Biyoteknoloji ve Sıfır Atık Danışmanı",
-            "avatar": "images/selin.png",
-            "advice": "Müdür Bey, lisenin organik atık verimi beklediğimizden yüksek. 85.000 TL hibe verirsek okul pansiyonu doğalgaz faturasını %40 azaltır. Gençlerin motivasyonu için harika bir yatırım, onaylamanızı tavsiye ederim."
+        "consultants": {
+            "pro": {
+                "name": "Dr. Selin",
+                "role": "Biyoteknoloji ve Sıfır Atık Danışmanı",
+                "avatar": "images/selin.png",
+                "advice": "Müdür Bey, lisenin organik atık verimi beklediğimizden yüksek. 85.000 TL hibe verirsek okul pansiyonu doğalgaz faturasını %40 azaltır. Gençlerin motivasyonu için harika bir yatırım, onaylamanızı tavsiye ederim."
+            },
+            "con": {
+                "name": "Ekrem Bey",
+                "role": "Mali Hizmetler & Bütçe Müdürü",
+                "avatar": "images/ekrem.png",
+                "advice": "Müdürüm, 85.000 TL hibe bütçemizde öngörülmeyen bir harcamadır. Eğer her okula bu hibeyi verirsek kasada para kalmaz, temkinli olmalıyız."
+            }
         },
         "accept": {
             "effects": {
@@ -3322,43 +3465,51 @@
     },
     {
         "id": 2,
-        "subject": "KONU: Millet Bahçesi Doğusu Katlı Otopark Projesi",
+        "subject": "KONU: Şehir Merkezi Katlı Transfer Otoparkı & Lojistik",
         "sender": "Belediye Başkanlık Makamı (Başkan Cengiz)",
         "avatar": "images/baskan.png",
         "cost": 350000,
         "costText": "Gelir: +350.000 ₺ (Otopark İşletme Geliri)",
-        "body": "BAŞKANLIK TALİMATI: Çarşı merkezindeki esnaf ve araç yoğunluğunun bertarafı amacıyla Millet Bahçesi doğu rekreasyon alanında 3 katlı kapalı otopark inşaatına ivedilikle başlanması hususunda gereğini rica ederim.",
-        "risk": "Risk: Yüksek • COP31 Teması: İklim Dirençli Şehirler",
-        "consultant": {
-            "name": "Barış",
-            "role": "Kentsel Ekoloji ve Şehir Plancısı",
-            "avatar": "images/baris.png",
-            "advice": "Dikkat Müdürüm! Başkan esnafı rahatlatmak için 350.000 TL sıcak gelir vaat ediyor ama seçilen parsel şehrin kalan tek yeşil hava koridoru. Buraya beton dökülürse yaz aylarında şehirde sıcaklık adası etkisi 2 derece artar."
+        "body": "BAŞKANLIK TALİMATI: Çarşı merkezindeki araç kaosunu ve sokak aralarında egzoz salarak dönen trafiği bitirmek amacıyla, çeperde 3 katlı modern bir aktarma otoparkı inşaatına başlanması ve 350.000 TL işletme gelirinin bütçeye aktarılması hususunda gereğini rica ederim.",
+        "risk": "Risk: Dengeli • COP31 Teması: İklim Dirençli Şehirler & Ulaşım",
+        "consultants": {
+            "pro": {
+                "name": "Barış",
+                "role": "Kentsel Ekoloji ve Şehir Plancısı",
+                "avatar": "images/baris.png",
+                "advice": "Müdürüm, otopark salt beton demek değildir; doğru konumlandırılmış bir transfer merkezi araçları merkeze girmeden toplar, çarşı içindeki hava kirliliğini ve yayaların üzerindeki egzoz baskısını %35 azaltır. Esnaf için de can simididir."
+            },
+            "con": {
+                "name": "Dr. Selin",
+                "role": "Biyoteknoloji ve Çevre Sağlığı",
+                "avatar": "images/selin.png",
+                "advice": "Dikkat Müdürüm! Seçilen alan kısmi yeşil doku içeriyor. Eğer buraya elektrikli araç şarjı ve yeşil çatı şartı koymazsak, çevre aktivistleri projeyi 'betonlaşma' olarak yaftalayabilir."
+            }
         },
         "accept": {
             "effects": {
                 "budget": 350000,
-                "eco": -22,
-                "youth": -20,
+                "eco": -8,
+                "youth": -10,
                 "mayor": 25
             },
             "news": {
-                "good": false,
-                "headline": "YEŞİL ALANA 3 KATLI BETON OTOPARK!",
-                "text": "Millet Bahçesi doğusundaki koruluk otopark inşaatı için dozerlerle düzlendi. Çevre dernekleri eylem hazırlığında."
+                "good": true,
+                "headline": "ÇARŞIDA ARAÇ KAOSUNA SON: TRANSFER OTOPARKI ONAYLANDI!",
+                "text": "Merkez trafiğini rahatlatacak modern transfer otoparkı onaylandı. Esnaf rahat nefes alırken belediye kasasına önemli bir gelir girdi."
             }
         },
         "reject": {
             "effects": {
                 "budget": 0,
-                "eco": 15,
-                "youth": 15,
+                "eco": 12,
+                "youth": 10,
                 "mayor": -22
             },
             "news": {
-                "good": true,
-                "headline": "MÜDÜRLÜKTEN MİLLET BAHÇESİNE SAHİP ÇIKAN VETO!",
-                "text": "Belediye başkanının katlı otopark projesi çevre müdürünün kararıyla durduruldu. Ağaçlar kurtuldu."
+                "good": false,
+                "headline": "ÇARŞI OTOPARK PROJESİ ÇEVRE MÜDÜRLÜĞÜNCE DURDURULDU!",
+                "text": "Başkanlık talimatına rağmen yeşil doku gerekçesiyle otopark reddedildi. Başkan'ın bu karara çok öfkelendiği konuşuluyor."
             }
         }
     },
@@ -3369,35 +3520,47 @@
         "avatar": "images/selin.png",
         "cost": -160000,
         "costText": "Maliyet: 160.000 ₺ • Teknoloji Yatırımı",
-        "body": "Geri dönüşüm tesisimize kurulacak optik lazer sensörler ve konveyör bant yapay zekâ sistemiyle ayrıştırma verimliliğini %95'e çıkaracağız. 160.000 TL kurulum bütçesi arz olunur.",
-        "risk": "Risk: Orta • COP31 Teması: Sıfır Atık & İnovasyon",
-        "consultant": {
-            "name": "Dr. Selin",
-            "role": "Teknopark Ar-Ge Koordinatörü",
-            "avatar": "images/selin.png",
-            "advice": "Bu sistemle geri dönüşüm tesisimiz çöpleri %98 doğrulukla ayırt edecek. İlk yatırım 160.000 TL görünse de 6 ay içinde geri kazanılan hammaddeyle kendini amorti edecek. Sıfır Atık hedeflerimiz için kritik."
+        "body": "Katı atık depolama sahasında konveyör bantlara yerleştirilecek yapay zekâ kameralı optik ayrıştırma robotu ile geri dönüşüm saflığının %92'ye çıkarılması projesidir.",
+        "risk": "Risk: Orta • COP31 Teması: Sıfır Atık",
+        "consultants": {
+            "pro": {
+                "name": "Dr. Selin",
+                "role": "Biyoteknoloji ve Sıfır Atık Danışmanı",
+                "avatar": "images/selin.png",
+                "advice": "Müdürüm, insan gücüyle pet şişe ve metalleri %50 verimle ayırabiliyoruz. Robotik optik sistem geri dönüşüm hacmini ikiye katlar ve hammadde satışından bütçeye yıllık 90.000 TL kazandırır."
+            },
+            "con": {
+                "name": "Müsteşar Tarık",
+                "role": "Sanayi ve Ticaret Odası",
+                "avatar": "images/tarik.png",
+                "advice": "Müdür Bey, yapay zekâ robotları yüksek bakım maliyeti gerektirir. Ayrıca sokak toplayıcıları ve kooperatifler ekmekleriyle oynandığını düşünerek tepki gösterebilir."
+            }
         },
         "accept": {
             "effects": {
                 "budget": -160000,
-                "eco": 25,
-                "youth": 10,
+                "eco": 22,
+                "youth": 15,
                 "mayor": 5
             },
             "news": {
                 "good": true,
-                "headline": "ŞEHRİN ÇÖPÜNE YAPAY ZEKÂ ELİ DEĞDİ!",
-                "text": "Teknopark'ın optik sensörleri sayesinde katı atık depolama alanına giden plastik miktarı yarı yarıya azaldı."
+                "headline": "YAPAY ZEKÂ ÇÖPLERİ MİLYONLUK HAMMADDEYE DÖNÜŞTÜRÜYOR!",
+                "text": "Katı atık tesisine kurulan robotik kollar plastik ve metalleri sıfır hatayla ayıklamaya başladı. Çevre Bakanlığı şehri tebrik etti."
             }
         },
         "reject": {
             "effects": {
                 "budget": 0,
                 "eco": -12,
-                "youth": -5,
+                "youth": -10,
                 "mayor": 0
             },
-            "news": null
+            "news": {
+                "good": false,
+                "headline": "AKILLI ATIK ROBOTU PROTOKOLÜ RAFA KALKTI!",
+                "text": "Maliyet yüksekliği gerekçesiyle teknoloji yatırımı reddedildi. Şehir çöpleri eskisi gibi vahşi depolamayla toprağa gömülmeye devam edecek."
+            }
         }
     },
     {
@@ -3406,14 +3569,22 @@
         "sender": "Gençlik İklim Meclisi (Ali)",
         "avatar": "images/ali.png",
         "cost": -40000,
-        "costText": "Maliyet: 40.000 ₺ • Lojistik & Emniyet",
-        "body": "Şehir merkezindeki Atatürk Caddesi ve Sahil Yolu'nun hafta sonları motorlu taşıt trafiğine kapatılarak bisiklet ve yayalara tahsis edilmesini talep ediyoruz.",
+        "costText": "Maliyet: 40.000 ₺ • Barikat & Zabıta Mesaisi",
+        "body": "Cumartesi ve Pazar günleri kent meydanına çıkan 3 ana bulvarın motorlu araç trafiğine kapatılarak yayalara, patencilere ve bisikletlilere tahsis edilmesini arz ederiz.",
         "risk": "Risk: Orta • COP31 Teması: Karbon Ayak İzi & Gençlik",
-        "consultant": {
-            "name": "Müsteşar Tarık",
-            "role": "Ticaret Odası Temsilcisi",
-            "avatar": "images/tarik.png",
-            "advice": "Müdür Bey, gençleri anlıyorum ama hafta sonu ana caddeleri trafiğe kapatmak çarşı esnafının cirosunu baltalar. Başkan da esnafın sesine çok duyarlıdır. İmzalamadan önce iyi düşünün derim."
+        "consultants": {
+            "pro": {
+                "name": "Ali",
+                "role": "Gençlik İklim Elçisi",
+                "avatar": "images/ali.png",
+                "advice": "Müdürüm, ana arterleri yayalaştırırsak hava kalitesi istasyonu anında yeşile döner. Aileler ve gençler sokaklara akar, şehir canlanır."
+            },
+            "con": {
+                "name": "Müsteşar Tarık",
+                "role": "Ticaret Odası Temsilcisi",
+                "avatar": "images/tarik.png",
+                "advice": "Müdür Bey, gençleri anlıyorum ama hafta sonu ana caddeleri trafiğe kapatmak araçla gelen müşteriyi keser, çarşı esnafının cirosunu baltalar. Başkan da esnafın sesine duyarlıdır."
+            }
         },
         "accept": {
             "effects": {
@@ -3451,11 +3622,19 @@
         "costText": "Gelir: +220.000 ₺ (Sanayi Teşvik Katkı Payı)",
         "body": "Küresel tedarik zinciri krizi nedeniyle organize sanayi bölgesindeki 8 fabrikanın elektrostatik filtre yenileme süresinin 18 ay ertelenmesini ve 220.000 TL teşvik katkı fonunun müdürlüğünüze aktarılmasını arz ederiz.",
         "risk": "Risk: Çok Yüksek • COP31 Teması: Karbon Ayak İzi",
-        "consultant": {
-            "name": "Doç. Dr. Kerem",
-            "role": "Çevre Sağlığı ve Deniz Bilimleri",
-            "avatar": "images/kerem.png",
-            "advice": "Kesinlikle tavsiye etmiyorum! Sanayi tesisleri 220.000 TL sıcak para sunuyor olabilir ancak filtrelenmeyen kükürt gazı ilk yağmurda asit yağmuru olarak tarım arazilerimize ve körfeze inecek."
+        "consultants": {
+            "pro": {
+                "name": "Müsteşar Tarık",
+                "role": "Ticaret Odası Temsilcisi",
+                "avatar": "images/tarik.png",
+                "advice": "Müdür Bey, fabrikalar kapanırsa yüzlerce işçi kapının önüne konur. 220.000 TL sıcak nakit de belediye çevre projelerine kaynak olur."
+            },
+            "con": {
+                "name": "Doç. Dr. Kerem",
+                "role": "Çevre Sağlığı ve Deniz Bilimleri",
+                "avatar": "images/kerem.png",
+                "advice": "Kesinlikle tavsiye etmiyorum! Sanayi tesisleri sıcak para sunuyor olabilir ancak filtrelenmeyen kükürt gazı ilk yağmurda asit yağmuru olarak tarım arazilerimize ve körfeze inecek."
+            }
         },
         "accept": {
             "effects": {
@@ -3493,33 +3672,45 @@
         "costText": "Maliyet: 75.000 ₺ • Hibe ve Ekipman",
         "body": "Kentin en yoğun 20 otobüs durağının çatısına güneş paneli entegrasyonu ve telefon şarj istasyonu projesidir. Meslek lisesi öğrencilerimiz montajı ücretsiz yapacaktır.",
         "risk": "Risk: Düşük • COP31 Teması: Yenilenebilir Enerji",
-        "consultant": {
-            "name": "Merve",
-            "role": "Güneş Enerjisi Sistemleri Teknisyeni",
-            "avatar": "images/merve.png",
-            "advice": "Durak tavanlarındaki paneller hem aydınlatmayı bedavaya getirecek hem de vatandaşlara acil şarj imkanı sunacak. Meslek liseli arkadaşlarımız montajı bizzat yapacağı için işçilik masrafı yok."
+        "consultants": {
+            "pro": {
+                "name": "Merve",
+                "role": "Güneş Enerjisi Sistemleri Teknisyeni",
+                "avatar": "images/merve.png",
+                "advice": "Durak tavanlarındaki paneller hem aydınlatmayı bedavaya getirecek hem de vatandaşlara acil şarj imkanı sunacak. Meslek liseli arkadaşlarımız montajı bizzat yapacağı için işçilik masrafı yok."
+            },
+            "con": {
+                "name": "Ekrem Bey",
+                "role": "Mali Hizmetler & Bütçe Müdürü",
+                "avatar": "images/ekrem.png",
+                "advice": "Müdürüm proje şık ama 75.000 TL az para değil. Ayrıca duraklardaki kablolar ve prizler vandalizm riskiyle karşı karşıya kalabilir."
+            }
         },
         "accept": {
             "effects": {
                 "budget": -75000,
-                "eco": 18,
-                "youth": 15,
-                "mayor": 5
+                "eco": 16,
+                "youth": 20,
+                "mayor": 2
             },
             "news": {
                 "good": true,
-                "headline": "OTOBÜS DURAKLARI GÜNEŞ ENERJİSİYLE AYDINLANIYOR!",
-                "text": "Meslek liseli gençlerin tasarladığı güneş enerjili duraklar hem çevreye hem vatandaşa hizmet veriyor."
+                "headline": "GÜNEŞ ENERJİLİ AKILLI DURAKLAR HİZMETTE!",
+                "text": "Otobüs bekleyen vatandaşlar telefonlarını güneş enerjisiyle şarj ediyor. Projeyi üreten meslek liseliler gurur kaynağı oldu."
             }
         },
         "reject": {
             "effects": {
                 "budget": 0,
-                "eco": -8,
+                "eco": -5,
                 "youth": -15,
                 "mayor": 0
             },
-            "news": null
+            "news": {
+                "good": false,
+                "headline": "MESLEK LİSELİLERİN GÜNEŞ PROJESİ MASADA KALDI!",
+                "text": "Duraklara güneş paneli takılması teklifi belediye bütçesine takıldı. Genç teknisyenler üzgün."
+            }
         }
     },
     {
@@ -3529,38 +3720,46 @@
         "avatar": "images/helga.png",
         "cost": -110000,
         "costText": "Maliyet: 110.000 ₺ • Bağımsız Denetim",
-        "body": "Belediyenin tüm birimlerinin, fabrikalarının ve ulaşım ağının karbon emisyonunun uluslararası denetçilerce ölçülüp kamuoyuna açıklanması projesidir.",
-        "risk": "Risk: Yüksek • COP31 Teması: Şeffaflık & Karbon",
-        "consultant": {
-            "name": "Helga",
-            "role": "BM COP31 Bağımsız Denetçisi",
-            "avatar": "images/helga.png",
-            "advice": "Müdür Bey, bu rapor şehrinizin uluslararası arenadaki güvenilirliğidir. Karbon salımını gizlemek kısa vadede başkanı koruyabilir ama açık ve şeffaf bir envanter COP31 hibelerinden 2 Milyon Dolar çekmenizi sağlar."
+        "body": "Uluslararası akreditasyon kapsamında kentin tüm sanayi, ulaşım ve konut karbon salımının bağımsız uluslararası uzmanlarca denetlenip kamuoyuna açık ilan edilmesi zorunluluğudur.",
+        "risk": "Risk: Yüksek (Siyasi) • COP31 Teması: Eğitim & Şeffaflık",
+        "consultants": {
+            "pro": {
+                "name": "Helga",
+                "role": "Uluslararası COP31 Baş Denetçisi",
+                "avatar": "images/helga.png",
+                "advice": "Sayın Müdür, bağımsız denetimden kaçan hiçbir şehir COP31'de söz sahibi olamaz. Şeffaflık Avrupa fonlarından 2 milyon Euro yeşil hibe kapısını aralayabilir."
+            },
+            "con": {
+                "name": "Başkan Cengiz",
+                "role": "Belediye Başkanı",
+                "avatar": "images/baskan.png",
+                "advice": "Müdür! Karbon emisyonumuz beklediğimden yüksek çıkarsa muhalefet bunu aleyhime kullanır! Şeffaflık iyi güzel de seçim arifesinde siyasi intihar mı edelim?"
+            }
         },
         "accept": {
             "effects": {
                 "budget": -110000,
-                "eco": 30,
-                "youth": 15,
-                "mayor": -15
+                "eco": 24,
+                "youth": 18,
+                "mayor": -18
             },
             "news": {
                 "good": true,
-                "headline": "BM HEYETİNDEN ŞEHRİMİZE TAM NOT!",
-                "text": "Şeffaf karbon envanterini dünyaya açan kentimiz, COP31 zirvesinde rol model şehirler arasına girdi."
+                "headline": "BELEDİYE ŞEFFAFLIKTA ÖRNEK OLDU: TÜM KARBON VERİLERİ AÇIKLANDI!",
+                "text": "Uluslararası heyet şehrin karbon raporunu onayladı. Genç araştırmacılar belediyenin cesur adımını alkışladı."
             }
         },
         "reject": {
             "effects": {
                 "budget": 0,
-                "eco": -20,
-                "youth": -10,
+                "eco": -15,
+                "youth": -20,
                 "mayor": 12
             },
             "news": {
                 "good": false,
-                "headline": "KENTİN KARBON RAPORU SÜMEN ALTI EDİLDİ!",
-                "text": "Uluslararası denetim teklifi reddedildi. BM heyeti hayal kırıklığıyla şehirden ayrıldı."
+                "headline": "ŞEHRİN KARBON RAPORU SÜMEN ALTI EDİLDİ!",
+                "text": "COP31 denetim heyetinin rapor talebi reddedildi. Şehrin yeşil zirve adaylığı askıya alınma riskiyle karşı karşıya."
             }
         }
     },
@@ -3570,36 +3769,48 @@
         "sender": "Üniversite Ekoloji Kulübü (Barış)",
         "avatar": "images/baris.png",
         "cost": -50000,
-        "costText": "Maliyet: 50.000 ₺ • Toprak & Tohum Desteği",
-        "body": "Kuzey mahallesinde atıl duran 12 dönümlük belediye arazisinin ata tohumu tarımı ve kompost üretimi için mahalle meclislerine tahsis edilmesini arz ederiz.",
-        "risk": "Risk: Düşük • COP31 Teması: Gıda Güvenliği",
-        "consultant": {
-            "name": "Barış",
-            "role": "Permakültür ve Gıda Güvenliği Uzmanı",
-            "avatar": "images/baris.png",
-            "advice": "Atıl kalan arsayı kompost üretimi ve ata tohumu bostanına çevireceğiz. Mahalle sakinleri kendi sebzesini yetiştirecek. Bütçesi düşük ama toplumsal barış ve karbon tutulumu etkisi çok yüksek."
+        "costText": "Maliyet: 50.000 ₺ • Toprak & Sulama Altyapısı",
+        "body": "Kepez ve Muratpaşa sınırındaki 12 dönümlük atıl moloz döküm alanının temizlenerek mahalle sakinleri ve üniversiteliler için permakültür kent bostanına dönüştürülmesi projesidir.",
+        "risk": "Risk: Düşük • COP31 Teması: Gıda Güvenliği & Şehirler",
+        "consultants": {
+            "pro": {
+                "name": "Barış",
+                "role": "Kentsel Ekoloji ve Şehir Plancısı",
+                "avatar": "images/baris.png",
+                "advice": "Müdürüm, kent bostanları hem mahallelinin organik gıdaya erişimini sağlar hem de beton sıcaklık adasını kırar. 50.000 TL gibi mütevazı bir bütçeyle devasa bir sosyal dönüşüm yaratırız."
+            },
+            "con": {
+                "name": "Ekrem Bey",
+                "role": "Mali Hizmetler & Bütçe Müdürü",
+                "avatar": "images/ekrem.png",
+                "advice": "Müdür Bey, o 12 dönüm arsa yarın öbür gün ticari parsel olarak satılabilir veya otopark yapılabilirdi. Bostan yaparsak o arsayı bir daha geri alamayız."
+            }
         },
         "accept": {
             "effects": {
                 "budget": -50000,
-                "eco": 20,
-                "youth": 18,
+                "eco": 18,
+                "youth": 22,
                 "mayor": 0
             },
             "news": {
                 "good": true,
-                "headline": "BETON YERİNE ATA TOHUMU: KENT BOSTANI AÇILDI!",
-                "text": "Belediyenin atıl arazisi bostana dönüştü. Mahalle sakinleri ilk hasadı şenlikle kutladı."
+                "headline": "MOLOZ YIĞINLARI DOMATES VE BİBER BAHÇESİNE DÖNÜŞTÜ!",
+                "text": "Belediyenin tahsis ettiği kent bostanında ilk hasat yapıldı. Mahalleli taze sebzelerini kendi elleriyle topluyor."
             }
         },
         "reject": {
             "effects": {
                 "budget": 0,
-                "eco": -10,
+                "eco": -8,
                 "youth": -18,
-                "mayor": 5
+                "mayor": 6
             },
-            "news": null
+            "news": {
+                "good": false,
+                "headline": "BOSTAN TALEBİNE RET: PARSELLER BETONA TERK EDİLDİ!",
+                "text": "Üniversite öğrencilerinin kent bostanı başvurusu kabul edilmedi. Atıl arazide hafriyat kamyonları dolaşmaya devam ediyor."
+            }
         }
     },
     {
@@ -3608,39 +3819,47 @@
         "sender": "Kentsel İmar A.Ş. (Müteahhit Ekrem)",
         "avatar": "images/ekrem.png",
         "cost": 500000,
-        "costText": "Gelir: +500.000 ₺ (Lüks Konut Ruhsat Harcı)",
-        "body": "Çamlık koruluğunun güney yamacındaki taşlık alanın villa ve rezidans imarına açılması durumunda belediye bütçesine 500.000 TL peşin ruhsat harcı aktarılacaktır.",
+        "costText": "Gelir: +500.000 ₺ (İmar Harcı & Katkı Payı)",
+        "body": "Şehir merkezine hakim Çamlık Koruluğu eteklerindeki 15 hektarlık alanın 'Eko-Turizm ve Konut Alanı' olarak 1/1000 ölçekli imar planına işlenmesi ve 500.000 TL imar harcının müdürlüğünüze devri talep edilmektedir.",
         "risk": "Risk: Kritik • COP31 Teması: İklim Dirençli Şehirler",
-        "consultant": {
-            "name": "Doç. Dr. Kerem",
-            "role": "Doğal Hayatı Koruma Uzmanı",
-            "avatar": "images/kerem.png",
-            "advice": "Müteahhit Ekrem kasaya 500.000 TL sıcak para bırakmayı teklif ediyor ama o koruluk şehrin sel emniyet sibobudur. Orayı imara açarsanız ilk fırtınada alt mahalleleri sel basar."
+        "consultants": {
+            "pro": {
+                "name": "Müsteşar Tarık",
+                "role": "Ticaret Odası Temsilcisi",
+                "avatar": "images/tarik.png",
+                "advice": "Müdür Bey, 500.000 TL nakit para belediyenin tüm nakit sıkışıklığını tek hamlede çözer. Müteahhitler villa yaparken ağaçların çoğunu koruyacaklarını taahhüt ediyor."
+            },
+            "con": {
+                "name": "Barış",
+                "role": "Şehir Plancısı ve Ekoloji Uzmanı",
+                "avatar": "images/baris.png",
+                "advice": "Sakın Müdürüm! Çamlık Koruluğu kentin doğal akciğeri ve su tutma havzasıdır. Oraya kepçe girerse ilk şiddetli yağmurda aşağıdaki mahalleleri çamur basar, telafisi imkansız bir ekolojik cinayet olur!"
+            }
         },
         "accept": {
             "effects": {
                 "budget": 500000,
                 "eco": -35,
-                "youth": -25,
+                "youth": -30,
                 "mayor": 25
             },
             "news": {
                 "good": false,
-                "headline": "ÇAMLIK KORUSU İMARA AÇILDI: HALK AYAKTA!",
-                "text": "Asırlık çam ağaçları lüks rezidans inşaatı için kesilmeye başlandı. Şehirde protesto yürüyüşü yapıldı."
+                "headline": "ASIRLIK ÇAMLIK KORULUĞU İMARA AÇILDI!",
+                "text": "Belediye kasasına giren yarım milyon liranın ardından çam ağaçları kesilmeye başlandı. Çevre örgütleri nöbet başlattı."
             }
         },
         "reject": {
             "effects": {
                 "budget": 0,
-                "eco": 30,
-                "youth": 20,
+                "eco": 28,
+                "youth": 22,
                 "mayor": -22
             },
             "news": {
                 "good": true,
-                "headline": "MÜTEAHHİT LOBİSİNE RET: ÇAMLIK KORULUĞU KURTULDU!",
-                "text": "Çevre Müdürlüğü lüks konut teklifini reddetti. Koruluk halk parkı olarak tescillendi."
+                "headline": "ÇEVRE MÜDÜRLÜĞÜ RANT LOBİSİNE DİK DURDU: KORULUK KURTULDU!",
+                "text": "500.000 liralık cazip teklif reddedildi. Çamlık Koruluğu doğal sit alanı ilan edilmek üzere korumaya alındı."
             }
         }
     },
@@ -3650,36 +3869,48 @@
         "sender": "Genç Çevre Mühendisleri (Ece)",
         "avatar": "images/ece.png",
         "cost": -180000,
-        "costText": "Maliyet: 180.000 ₺ • Hidro-Türbin Yatırımı",
-        "body": "Taşkın riski taşıyan Kent Deresi yatağının doğal taşlarla tahkim edilerek balık geçitli Arşimet vidası türbiniyle elektrik üretilmesini olurlarınıza sunarız.",
-        "risk": "Risk: Orta • COP31 Teması: Su & Enerji",
-        "consultant": {
-            "name": "Ece",
-            "role": "Hidro-Ekoloji Mühendisi",
-            "avatar": "images/ece.png",
-            "advice": "Arşimet vidası geleneksel türbinler gibi balıkları parçalamaz, su canlılarına %100 dosttur. Dere debisinden temiz elektrik üretecek. 180.000 TL maliyeti 1 yılda amorti eder."
+        "costText": "Maliyet: 180.000 ₺ • Hidro Türbin & Islah",
+        "body": "Şehir içinden geçen Boğaçayı/Düden kolundaki su debisini kullanarak balık göçüne zarar vermeyen Arşimet vidası mikro-hidroelektrik türbini kurulması ve çevre aydınlatmasının bedavaya getirilmesidir.",
+        "risk": "Risk: Orta • COP31 Teması: Yenilenebilir Enerji & Okyanuslar",
+        "consultants": {
+            "pro": {
+                "name": "Ece",
+                "role": "Su Yönetimi ve Tarımsal İnovasyon",
+                "avatar": "images/ece.png",
+                "advice": "Müdürüm, geleneksel beton kanal yapmak yerine Arşimet vidası türbini kurarsak hem taşkın riskini yönetiriz hem de yılda 120 megavat temiz elektrik üretiriz. Balıklar zarar görmeden geçebilir."
+            },
+            "con": {
+                "name": "Ekrem Bey",
+                "role": "Mali Hizmetler & Bütçe Müdürü",
+                "avatar": "images/ekrem.png",
+                "advice": "Müdür Bey, 180.000 TL yüksek bir ıslah bütçesi. Akdeniz'in ani kış taşkınlarında bu türbinlerin çamur ve molozla tıkanıp bozulma riski de var."
+            }
         },
         "accept": {
             "effects": {
                 "budget": -180000,
                 "eco": 25,
                 "youth": 15,
-                "mayor": 5
+                "mayor": 0
             },
             "news": {
                 "good": true,
-                "headline": "KENT DERESİ ARTIK HEM TEMİZ AKIYOR HEM ELEKTRİK ÜRETİYOR!",
-                "text": "Çevre dostu Arşimet türbinleri sayesinde derenin enerjisi kente elektrik olarak dönmeye başladı."
+                "headline": "KENT DERESİ ARTIK HEM ÇEVREYİ AYDINLATIYOR HEM BALIKLARI KORUYOR!",
+                "text": "Yenilikçi Arşimet vidası devreye girdi. Dere boyundaki yürüyüş yolları kendi ürettiği hidroelektrikle pırıl pırıl aydınlandı."
             }
         },
         "reject": {
             "effects": {
                 "budget": 0,
-                "eco": -15,
+                "eco": -10,
                 "youth": -12,
-                "mayor": 0
+                "mayor": 4
             },
-            "news": null
+            "news": {
+                "good": false,
+                "headline": "DERE ISLAHI İÇİN MİKRO-TÜRBİN FİKRİ REDDEDİLDİ!",
+                "text": "Genç mühendislerin hazırladığı hidroelektrik projesi onay alamadı. Dere eski koku ve kirliliğiyle akmaya devam ediyor."
+            }
         }
     },
     {
@@ -3688,39 +3919,47 @@
         "sender": "Deniz Bilimleri Enstitüsü (Doç. Dr. Kerem)",
         "avatar": "images/kerem.png",
         "cost": -130000,
-        "costText": "Maliyet: 130.000 ₺ • Deniz Koruma",
-        "body": "Kaçak trol avcılığını engellemek ve deniz canlı popülasyonunu yeniden canlandırmak için körfez açıklarına 60 adet yapay resif bloğu bırakılmasını talep ediyoruz.",
+        "costText": "Maliyet: 130.000 ₺ • Resif Blokları & İzleme",
+        "body": "Antalya falezleri ve kıyı bandında kaçak trolle tahrip olan balık üreme sahalarına 120 adet delikli beton yapay resif bloku batırılması ve dalış turizminin canlandırılması projesidir.",
         "risk": "Risk: Düşük • COP31 Teması: Okyanuslar ve Denizler",
-        "consultant": {
-            "name": "Doç. Dr. Kerem",
-            "role": "Deniz Biyoloğu",
-            "avatar": "images/kerem.png",
-            "advice": "Müsilaj ve kaçak trol avcılığı körfezi öldürüyor. Denize bırakacağımız 60 adet beton resif bloğu balık yuvalarını canlandıracak ve kaçak ağları engelleyecek. Denizlerimiz için son şans."
+        "consultants": {
+            "pro": {
+                "name": "Doç. Dr. Kerem",
+                "role": "Deniz Bilimleri ve Kıyı Ekolojisi",
+                "avatar": "images/kerem.png",
+                "advice": "Müdür Bey, denizlerimiz çölleşiyor. Yapay resifler 6 ay içinde mercan ve yavru balık yuvasına döner. Kıyı balıkçılığı ve eko-turizm gelirleri 3 katına çıkar."
+            },
+            "con": {
+                "name": "Müsteşar Tarık",
+                "role": "Ticaret Odası & Su Sporları Temsilcisi",
+                "avatar": "images/tarik.png",
+                "advice": "Müdürüm, resiflerin atılacağı bölgede jet-ski ve su sporları parkurları var. O alanı korumaya alırsak oteller ve turizm işletmeleriyle karşı karşıya kalırız."
+            }
         },
         "accept": {
             "effects": {
                 "budget": -130000,
-                "eco": 25,
+                "eco": 26,
                 "youth": 12,
-                "mayor": 0
+                "mayor": 4
             },
             "news": {
                 "good": true,
-                "headline": "KÖRFEZE CAN SUYU: YAPAY RESİFLER DENİZLE BULUŞTU!",
-                "text": "Denize indirilen beton resifler sayesinde kaçak trolcülük bitti, balık sürüleri körfeze geri döndü."
+                "headline": "KÖRFEZİN DİBİNE YAPAY RESİFLER İNDİRİLDİ: BALIKLAR GERİ DÖNÜYOR!",
+                "text": "Falezler açığına batırılan resifler ilk günden deniz canlılarıyla dolup taştı. Kıyı balıkçıları belediyeye teşekkür etti."
             }
         },
         "reject": {
             "effects": {
                 "budget": 0,
-                "eco": -25,
+                "eco": -14,
                 "youth": -10,
-                "mayor": 5
+                "mayor": -4
             },
             "news": {
                 "good": false,
-                "headline": "KÖRFEZ KADERİNE TERK EDİLDİ!",
-                "text": "Resif projesi iptal edildi. Deniz biyologları körfezdeki canlı popülasyonunun tükenme eşiğinde olduğunu bildirdi."
+                "headline": "DENİZ RESİF PROJESİ VETO EDİLDİ!",
+                "text": "Kıyı ekolojisini kurtaracak yapay resif ihalesi bütçe tasarrufu nedeniyle iptal edildi. Deniz popülasyonu gerilemeye devam ediyor."
             }
         }
     },
@@ -3728,38 +3967,50 @@
         "id": 12,
         "subject": "KONU: Elektrikli Belediye Hizmet Araçları Filosu",
         "sender": "Ulaşım ve Makine İkmal Dairesi",
-        "avatar": "images/baskan.png",
+        "avatar": "images/merve.png",
         "cost": -220000,
-        "costText": "Maliyet: 220.000 ₺ • Yeşil Dönüşüm",
-        "body": "Belediyemizin ömrünü tamamlamış 15 adet dizel çöp kamyonu ve hizmet aracının yerli elektrikli hafif ticari araçlarla yenilenmesi için 220.000 TL başlangıç tahsisatı arz olunur.",
-        "risk": "Risk: Orta • COP31 Teması: Karbon Ayak İzi",
-        "consultant": {
-            "name": "Dr. Selin",
-            "role": "Temiz Ulaşım Sistemleri Danışmanı",
-            "avatar": "images/selin.png",
-            "advice": "Eski dizel çöp kamyonları kentin karbon emisyonunun %14'ünü oluşturuyor. Elektrikli filoya geçiş 220.000 TL istiyor ancak yıllık mazot tasarrufumuz 300.000 TL olacak."
+        "costText": "Maliyet: 220.000 ₺ • Filo Dönüşümü",
+        "body": "Müdürlüğümüz bünyesindeki 15 adet eski dizel teftiş ve çöp toplama aracının yerli elektrikli hafif ticari araçlarla takas edilerek şarj istasyonlarının kurulmasıdır.",
+        "risk": "Risk: Orta • COP31 Teması: Yenilenebilir Enerji & Karbon",
+        "consultants": {
+            "pro": {
+                "name": "Merve",
+                "role": "Güneş Enerjisi ve Elektrikli Araçlar",
+                "avatar": "images/merve.png",
+                "advice": "Müdürüm, dizel araçların mazot ve bakım masrafı yıllık 140.000 TL tutuyor. Elektrikli filoya geçersek bu gider %70 düşer ve belediye örnek olur."
+            },
+            "con": {
+                "name": "Ekrem Bey",
+                "role": "Mali Hizmetler & Bütçe Müdürü",
+                "avatar": "images/ekrem.png",
+                "advice": "Müdür Bey, 220.000 TL peşin ödeme kasayı deler. Eski araçlarımız biraz duman atsa da henüz yürür durumda, bu harcamayı seneye erteleyebiliriz."
+            }
         },
         "accept": {
             "effects": {
                 "budget": -220000,
-                "eco": 28,
+                "eco": 22,
                 "youth": 15,
-                "mayor": 10
+                "mayor": 8
             },
             "news": {
                 "good": true,
-                "headline": "BELEDİYE FİLOSU SESSİZ VE SIFIR EMİSYONLA ÇALIŞIYOR!",
-                "text": "Kentin ilk yerli elektrikli çöp araçları hizmete girdi. Sokaklardaki dizel gürültüsü ve egzoz dumanı tarihe karıştı."
+                "headline": "BELEDİYE FİLOSU SESSİZ VE SIFIR EMİSYONLU ELEKTRİĞE GEÇTİ!",
+                "text": "Sokaklarda artık gürültülü dizel kamyonlar yerine sessiz elektrikli teftiş araçları dolaşıyor. Yakıt tasarrufu bütçeye yansıdı."
             }
         },
         "reject": {
             "effects": {
                 "budget": 0,
-                "eco": -15,
-                "youth": -5,
-                "mayor": -5
+                "eco": -10,
+                "youth": -8,
+                "mayor": 2
             },
-            "news": null
+            "news": {
+                "good": false,
+                "headline": "ELEKTRİKLİ ARAÇ DÖNÜŞÜMÜ ERTELENDİ!",
+                "text": "Maliyet yüksekliği nedeniyle eski fosil yakıtlı filoyla yola devam kararı alındı. Çevre örgütleri belediyeyi samimiyetsizlikle suçladı."
+            }
         }
     },
     {
@@ -3768,106 +4019,34 @@
         "sender": "Çevre Mühendisleri Odası (Ece)",
         "avatar": "images/ece.png",
         "cost": -140000,
-        "costText": "Maliyet: 140.000 ₺ • Altyapı Yatırımı",
-        "body": "Ani sağanaklarda sel riskini bertaraf etmek ve kuraklıkta yeşil alan sulamasını temin etmek üzere 5 kent meydanına sünger şehir geçirgen taşları ve yeraltı yağmur depolama sarnıçları kurulması teklifidir.",
+        "costText": "Maliyet: 140.000 ₺ • Altyapı & Peyzaj",
+        "body": "Kentteki 4 büyük parkın zeminine geçirimli sünger taşlar döşenmesi ve yeraltı yağmur suyu sarnıçlarıyla park sulamasının şebeke suyundan tamamen bağımsız kılınmasıdır.",
         "risk": "Risk: Düşük • COP31 Teması: İklim Dirençli Şehirler",
-        "consultant": {
-            "name": "Barış",
-            "role": "Kentsel Ekoloji ve Şehir Plancısı",
-            "avatar": "images/baris.png",
-            "advice": "Ani sağanak yağışlar artık afete dönüşüyor. Betonu söküp sünger geçirgen taşlar döşersek yağmur suyunu yerinde tutarız. Hem su baskınları %70 azalır hem de sarnıçlar kurak yaz aylarında parkları sular."
+        "consultants": {
+            "pro": {
+                "name": "Ece",
+                "role": "Su Yönetimi Uzmanı",
+                "avatar": "images/ece.png",
+                "advice": "Müdürüm, ani Akdeniz fırtınalarında caddeler göle dönüyor. Sünger parklar hem sel suyunu emer hem de yazın sulama için bedava 5.000 ton su depolar."
+            },
+            "con": {
+                "name": "Barış",
+                "role": "Kentsel Ekoloji ve Şehir Plancısı",
+                "avatar": "images/baris.png",
+                "advice": "Müdürüm altyapı kazıları şehrin en işlek 4 parkını 2 ay boyunca şantiyeye çevirecek. Halkın rekreasyon alanına erişimi geçici olarak aksayabilir."
+            }
         },
         "accept": {
             "effects": {
                 "budget": -140000,
                 "eco": 24,
-                "youth": 12,
-                "mayor": 6
+                "youth": 14,
+                "mayor": 5
             },
             "news": {
                 "good": true,
-                "headline": "SÜNGER ŞEHİR YAĞMUR PARKLARI AÇILDI!",
-                "text": "Kent sellerden korundu, yer altına depolanan yağmur suları yeşil alanları sulamaya başladı."
-            }
-        },
-        "reject": {
-            "effects": {
-                "budget": 0,
-                "eco": -18,
-                "youth": -8,
-                "mayor": 0
-            },
-            "news": {
-                "good": false,
-                "headline": "YAĞMUR SUYU DEPOLAMA PROJESİ İPTAL!",
-                "text": "Şehir ilk şiddetli sağanakta yine göle döndü, bodrum katları su bastı."
-            }
-        }
-    },
-    {
-        "id": 14,
-        "subject": "KONU: Okullarda İklim Elçileri ve Eko-Laboratuvar",
-        "sender": "İl Milli Eğitim İklim Temsilciliği (Zeynep)",
-        "avatar": "images/zeynep.png",
-        "cost": -60000,
-        "costText": "Maliyet: 60.000 ₺ • Eğitim Desteği",
-        "body": "30 pilot okulda öğrenci iklim elçileri yetiştirilmesi, okullara interaktif kompost ve enerji gözlem modülleri kurulması amacıyla 60.000 TL hibe tahsisi arz olunur.",
-        "risk": "Risk: Çok Düşük • COP31 Teması: İklim Eğitimi",
-        "consultant": {
-            "name": "Helga",
-            "role": "BM COP31 Bağımsız Denetçisi",
-            "avatar": "images/helga.png",
-            "advice": "COP31 kriterlerinin en başında 'Gelecek Nesillerin Farkındalığı' geliyor. 60.000 TL küçük bir kaynak ama 10.000 öğrenciye doğrudan iklim bilinci aşılayacak. Kesinlikle onaylayın."
-        },
-        "accept": {
-            "effects": {
-                "budget": -60000,
-                "eco": 20,
-                "youth": 25,
-                "mayor": 8
-            },
-            "news": {
-                "good": true,
-                "headline": "10 BİN ÖĞRENCİ İKLİM ELÇİSİ OLDU!",
-                "text": "Minikler okullarında enerji tasarrufu yarışması başlattı. Gençlik coşkusu şehre yayıldı."
-            }
-        },
-        "reject": {
-            "effects": {
-                "budget": 0,
-                "eco": -8,
-                "youth": -22,
-                "mayor": 0
-            },
-            "news": null
-        }
-    },
-    {
-        "id": 15,
-        "subject": "KONU: Kıyı Dalgasından Kesintisiz Elektrik Türbini",
-        "sender": "Kıyı Mühendisliği Ar-Ge (Doç. Dr. Kerem)",
-        "avatar": "images/kerem.png",
-        "cost": -190000,
-        "costText": "Maliyet: 190.000 ₺ • Pilot Tesis",
-        "body": "Körfez mendirek ucuna deniz kabarması ve akıntıdan 24 saat kesintisiz elektrik üretecek 2 modüllü pilot dalga türbini yerleştirilmesi projesidir.",
-        "risk": "Risk: Orta • COP31 Teması: Okyanuslar ve Yenilenebilir Enerji",
-        "consultant": {
-            "name": "Merve",
-            "role": "Güneş ve Alternatif Enerji Teknisyeni",
-            "avatar": "images/merve.png",
-            "advice": "Güneş geceleri üretmez, rüzgar her gün esmez ama deniz dalgası hiç durmaz! Bu mendirek türbini liman fenerinin ve sahil aydınlatmasının elektriğini sıfır maliyete indirecek."
-        },
-        "accept": {
-            "effects": {
-                "budget": -190000,
-                "eco": 26,
-                "youth": 15,
-                "mayor": 4
-            },
-            "news": {
-                "good": true,
-                "headline": "DENİZ DALGASINDAN ELEKTRİK ÜRETEN İLK ŞEHİR!",
-                "text": "Liman mendireği yeşil enerji üssüne dönüştü. Sahil feneri dalga enerjisiyle ışıldıyor."
+                "headline": "SÜNGER PARKLAR YAĞMUR SUYUNU ŞEHRİN HAZİNESİNE DÖNÜŞTÜRDÜ!",
+                "text": "Son sağanakta caddelerde su birikintisi oluşmadı; yağmur suyu sarnıçları ağzına kadar doldu. Şehir şebeke suyundan tasarruf etti."
             }
         },
         "reject": {
@@ -3877,7 +4056,111 @@
                 "youth": -10,
                 "mayor": 0
             },
-            "news": null
+            "news": {
+                "good": false,
+                "headline": "YAĞMUR SUYU HASADI PROJESİ İPTAL EDİLDİ!",
+                "text": "Sünger şehir altyapısı bütçe engeline takıldı. Yağan yağmur suyu arıtılmadan denize akıp sel felaketlerine zemin hazırlayacak."
+            }
+        }
+    },
+    {
+        "id": 14,
+        "subject": "KONU: Okullarda İklim Elçileri ve Eko-Laboratuvar",
+        "sender": "İl Milli Eğitim İklim Temsilciliği (Zeynep)",
+        "avatar": "images/zeynep.png",
+        "cost": -60000,
+        "costText": "Maliyet: 60.000 ₺ • Eğitim Materyalleri",
+        "body": "30 pilot ortaokulda kompost, hidroponik tarım ve mikro-güneş kitleri içeren Eko-Laboratuvar kurulması ve 500 öğrencinin İklim Elçisi olarak sertifikalandırılmasıdır.",
+        "risk": "Risk: Çok Düşük • COP31 Teması: İklim Eğitimi",
+        "consultants": {
+            "pro": {
+                "name": "Zeynep",
+                "role": "Lise İklim Elçisi",
+                "avatar": "images/zeynep.png",
+                "advice": "Müdür Bey, iklim bilinci okul sıralarında başlar. 500 çocuk evine gidip ailesine sıfır atık anlatırsa tüm şehrin tüketim alışkanlığı değişir."
+            },
+            "con": {
+                "name": "Müsteşar Tarık",
+                "role": "Ticaret Odası Temsilcisi",
+                "avatar": "images/tarik.png",
+                "advice": "Müdürüm 60.000 TL doğrudan eğitim gideridir, somut olarak belediyeye geri dönüşü ölçülemez. Bütçeyi daha acil altyapı işlerine saklayabiliriz."
+            }
+        },
+        "accept": {
+            "effects": {
+                "budget": -60000,
+                "eco": 18,
+                "youth": 26,
+                "mayor": 4
+            },
+            "news": {
+                "good": true,
+                "headline": "500 KÜÇÜK İKLİM ELÇİSİ SAHAYA İNDİ!",
+                "text": "Okullarda açılan eko-laboratuvarlarda çocuklar kendi sebzelerini yetiştirip kompost üretmeye başladı. Velilerden yoğun destek geldi."
+            }
+        },
+        "reject": {
+            "effects": {
+                "budget": 0,
+                "eco": -6,
+                "youth": -22,
+                "mayor": 2
+            },
+            "news": {
+                "good": false,
+                "headline": "OKULLARDA İKLİM EĞİTİMİNE BELEDİYEDEN ÖDENEK ÇIKMADI!",
+                "text": "Geleceğin iklim elçilerini yetiştirecek proje reddedildi. Öğrenci velileri ve öğretmenler sitem dolu bildiriler yayınladı."
+            }
+        }
+    },
+    {
+        "id": 15,
+        "subject": "KONU: Kıyı Dalgasından Kesintisiz Elektrik Türbini",
+        "sender": "Kıyı Mühendisliği Ar-Ge (Doç. Dr. Kerem)",
+        "avatar": "images/kerem.png",
+        "cost": -190000,
+        "costText": "Maliyet: 190.000 ₺ • Pilot Şamandıra Sistemi",
+        "body": "Lara açıklarında Akdeniz dalga hareketini hidrolik basınca çevirerek gece gündüz kesintisiz temiz elektrik üreten 2 adet yüzer dalga jeneratörü pilot kurulumudur.",
+        "risk": "Risk: Orta-Yüksek • COP31 Teması: Yenilenebilir Enerji",
+        "consultants": {
+            "pro": {
+                "name": "Doç. Dr. Kerem",
+                "role": "Deniz Bilimleri Uzmanı",
+                "avatar": "images/kerem.png",
+                "advice": "Güneş batınca elektrik üretimi duruyor ama Akdeniz dalgaları asla durmaz! Bu pilot sistem Türkiye'de bir ilk olacak ve COP31 zirvesinde dünya basınına vitrin projemiz olur."
+            },
+            "con": {
+                "name": "Ekrem Bey",
+                "role": "Mali Hizmetler & Bütçe Müdürü",
+                "avatar": "images/ekrem.png",
+                "advice": "Müdür Bey, 190.000 TL ar-geye gömülecek büyük bir para. Tuzlu deniz suyu metalleri aşındırır; bu sistem fırtınada batarsa para çöp olur."
+            }
+        },
+        "accept": {
+            "effects": {
+                "budget": -190000,
+                "eco": 28,
+                "youth": 16,
+                "mayor": 6
+            },
+            "news": {
+                "good": true,
+                "headline": "AKDENİZ DALGALARI ŞEHRİN ELEKTRİK AĞINA BAĞLANDI!",
+                "text": "Açık denize yerleştirilen pilot türbinler ilk kilovatsaat elektriği üretti. Uluslararası enerji dergileri projeyi manşete taşıdı."
+            }
+        },
+        "reject": {
+            "effects": {
+                "budget": 0,
+                "eco": -10,
+                "youth": -12,
+                "mayor": 0
+            },
+            "news": {
+                "good": false,
+                "headline": "DALGA ENERJİSİ PİLOT PROJESİNE ONAY ÇIKMADI!",
+                "text": "Riskli yatırım gerekçesiyle yenilikçi dalga türbini reddedildi. Şehir fosil yakıtlara bağımlı kalmaya devam edecek."
+            }
         }
     },
     {
@@ -3886,36 +4169,48 @@
         "sender": "Organik Çiftçiler Kooperatifi (Barış)",
         "avatar": "images/baris.png",
         "cost": -95000,
-        "costText": "Maliyet: 95.000 ₺ • Tohum Deposu",
-        "body": "Kuraklığa ve dona dayanıklı 140 geleneksel ata tohumu türünün korunması, tescillenmesi ve çiftçilere ücretsiz dağıtılması amacıyla belediye tohum bankası kurulmasıdır.",
+        "costText": "Maliyet: 95.000 ₺ • Soğuk Hava Deposu & İklimlendirme",
+        "body": "Toros yaylalarında kuraklığa ve sıcağa bin yıldır direnç göstermiş yerel buğday ve sebze ata tohumlarının toplanarak iklim kontrollü belediye tohum bankasında saklanmasıdır.",
         "risk": "Risk: Düşük • COP31 Teması: Gıda Güvenliği",
-        "consultant": {
-            "name": "Barış",
-            "role": "Permakültür ve Gıda Güvenliği Uzmanı",
-            "avatar": "images/baris.png",
-            "advice": "Hibrit tohumlar her yıl yabancı şirketlerden dövizle alınıyor ve aşırı su tüketiyor. Ata tohumlarımız ise kuraklığa dirençli. Şehrin gıda bağımsızlığı için 95.000 TL hayati önemde."
+        "consultants": {
+            "pro": {
+                "name": "Barış",
+                "role": "Kentsel Ekoloji ve Gıda Güvenliği",
+                "avatar": "images/baris.png",
+                "advice": "Müdürüm, küresel iklim krizi tohum tekelleriyle çözülemez. Kuraklığa dirençli ata tohumlarımız gelecekteki kıtlıklara karşı en büyük sigortamızdır."
+            },
+            "con": {
+                "name": "Müsteşar Tarık",
+                "role": "Ticaret Odası Temsilcisi",
+                "avatar": "images/tarik.png",
+                "advice": "Müdür Bey, endüstriyel hibrit tohum kullanan büyük tarım şirketleri ve gübre satıcıları bu yerel kooperatifleşmeden rahatsız olabilir."
+            }
         },
         "accept": {
             "effects": {
                 "budget": -95000,
                 "eco": 22,
-                "youth": 14,
-                "mayor": 8
+                "youth": 18,
+                "mayor": 2
             },
             "news": {
                 "good": true,
-                "headline": "ATA TOHUMLARI GÜVENCE ALTINDA!",
-                "text": "Belediye tohum bankası çiftçilere kuraklığa dayanıklı fide dağıtıyor, tarımda dışa bağımlılık azalıyor."
+                "headline": "ASIRLIK ATA TOHUMLARI BELEDİYE GÜVENCESİNE ALINDI!",
+                "text": "Toros köylerinden toplanan bin yıllık tohumlar modern bankada korumaya alındı. Çiftçilere ücretsiz kuraklığa dirençli fide dağıtımı başladı."
             }
         },
         "reject": {
             "effects": {
                 "budget": 0,
-                "eco": -14,
-                "youth": -12,
-                "mayor": 2
+                "eco": -10,
+                "youth": -14,
+                "mayor": 4
             },
-            "news": null
+            "news": {
+                "good": false,
+                "headline": "ATA TOHUMU BANKASI KURULMASI REDDEDİLDİ!",
+                "text": "Bütçe yetersizliği sebebiyle tohum koruma projesi rafa kaldırıldı. Ziraat mühendisleri genetik mirasımızın kaybolacağını vurguladı."
+            }
         }
     },
     {
@@ -3924,39 +4219,47 @@
         "sender": "Sıfır Atık Dairesi & Çevre Mühendisleri",
         "avatar": "images/selin.png",
         "cost": -35000,
-        "costText": "Maliyet: 35.000 ₺ • Denetim & Tebligat",
-        "body": "Belediye sınırları içindeki kafe ve marketlerde plastik pipet, köpük tabak ve tek kullanımlık plastik bardakların yasaklanarak biyobozunur alternatiflerin zorunlu kılınması tebliğidir.",
-        "risk": "Risk: Orta • COP31 Teması: Sıfır Atık & Bilinçli Tüketim",
-        "consultant": {
-            "name": "Müsteşar Tarık",
-            "role": "Ticaret Odası Temsilcisi",
-            "avatar": "images/tarik.png",
-            "advice": "Müdürüm, plastik üreticileri ve kafeler ayağa kalkar! Biyobozunur ambalajlar daha pahalı. Bu tebliğ onaylanırsa esnaf derneği başkana şikayete koşar, benden söylemesi."
+        "costText": "Maliyet: 35.000 ₺ • Denetim & Bez Çanta Dağıtımı",
+        "body": "Belediye sınırları içindeki tüm market, kafe ve plaj büfelerinde tek kullanımlık plastik pipet, tabak ve köpük bardakların yasaklanması ve alternatif biyobozunur ambalaj zorunluluğudur.",
+        "risk": "Risk: Orta • COP31 Teması: Sıfır Atık & Denizler",
+        "consultants": {
+            "pro": {
+                "name": "Dr. Selin",
+                "role": "Biyoteknoloji ve Sıfır Atık Danışmanı",
+                "avatar": "images/selin.png",
+                "advice": "Müdürüm, plajlarımızdaki Caretta Caretta kaplumbağaları plastik poşetleri denizanası sanıp yiyerek ölüyor. Bu yasak denizimizi ve sahilimizi gerçek anlamda temizler."
+            },
+            "con": {
+                "name": "Müsteşar Tarık",
+                "role": "Sanayi ve Ticaret Odası",
+                "avatar": "images/tarik.png",
+                "advice": "Müdür Bey, paket servis yapan yüzlerce restoran ve sahil esnafı ani maliyet artışıyla karşılaşır. Zabıtayla esnafı karşı karşıya getirmeyelim."
+            }
         },
         "accept": {
             "effects": {
                 "budget": -35000,
-                "eco": 26,
-                "youth": 18,
-                "mayor": -14
+                "eco": 24,
+                "youth": 20,
+                "mayor": -8
             },
             "news": {
                 "good": true,
-                "headline": "TEK KULLANIMLIK PLASTİĞE VEDA EDİLDİ!",
-                "text": "Şehir genelinde biyobozunur kaplara geçildi, çöp depolama sahasındaki plastik yığınları yarıya indi."
+                "headline": "PLAJLARDA VE KAFELERDE PLASTİK ÇÖP DEVRİ KAPANDI!",
+                "text": "Tek kullanımlık plastik yasağı yürürlüğe girdi. Sahillerde çöp miktarı ilk haftadan yarı yarıya azaldı."
             }
         },
         "reject": {
             "effects": {
                 "budget": 0,
-                "eco": -16,
-                "youth": -18,
-                "mayor": 14
+                "eco": -18,
+                "youth": -20,
+                "mayor": 8
             },
             "news": {
                 "good": false,
-                "headline": "PLASTİK LOBİSİ KAZANDI!",
-                "text": "Sıfır atık genelgesi esnaf baskısıyla rafa kaldırıldı. Sahiller plastik atıkla dolmaya devam ediyor."
+                "headline": "PLASTİK YASAĞI ESNAF BASKISIYLA GERİ ÇEKİLDİ!",
+                "text": "Çevre Müdürlüğü plastik yasağı tebliğini onaylamadı. Sahillerde plastik pet şişe ve pipet kirliliği devam edecek."
             }
         }
     },
@@ -3966,39 +4269,47 @@
         "sender": "Enerji Yatırımları A.Ş. (Müteahhit Ekrem)",
         "avatar": "images/ekrem.png",
         "cost": 450000,
-        "costText": "Gelir: +450.000 ₺ (Ruhsat Harcı Katkı Payı)",
-        "body": "Şehir sınırındaki eski kömürlü termik santrale 2 ek kazan ünitesi eklenmesi için ÇED olumlu raporu talep edilmektedir. Belediye çevre fonuna 450.000 TL peşin harç yatırılacaktır.",
-        "risk": "Risk: Çok Kritik • COP31 Teması: Karbon Salımı",
-        "consultant": {
-            "name": "Helga",
-            "role": "BM COP31 Bağımsız Denetçisi",
-            "avatar": "images/helga.png",
-            "advice": "Bu teklif tam bir zehirli elma! 450.000 TL sıcak para verecekler ama kömür kazanları yıllık 80.000 ton ek CO2 salacak. Bunu imzalarsanız şehrin COP31 adaylığı anında çöpe gider!"
+        "costText": "Gelir: +450.000 ₺ (Altyapı Katkı Bedeli)",
+        "body": "Organize sanayinin artan enerji ihtiyacını karşılamak üzere mevcut kömürlü termik santrale 150 MW ek kazan ünitesi eklenmesi için ÇED olumlu raporunun imzalanması ve 450.000 TL katkı payının aktarımıdır.",
+        "risk": "Risk: Kritik • COP31 Teması: Karbon Ayak İzi",
+        "consultants": {
+            "pro": {
+                "name": "Müsteşar Tarık",
+                "role": "Sanayi ve Ticaret Odası",
+                "avatar": "images/tarik.png",
+                "advice": "Müdürüm, organize sanayide elektrik kesintileri yaşanıyor. 450.000 TL nakit para belediyenin tüm çevre borçlarını tek kalemde kapatır."
+            },
+            "con": {
+                "name": "Doç. Dr. Kerem",
+                "role": "Çevre ve Halk Sağlığı Uzmanı",
+                "avatar": "images/kerem.png",
+                "advice": "Bu bir intihardır Müdür Bey! Ek kömür kazanı şehrin üzerine günde 40 ton karbondioksit ve zehirli kül yağdırır. COP31 heyeti şehri anında kara listeye alır!"
+            }
         },
         "accept": {
             "effects": {
                 "budget": 450000,
-                "eco": -40,
-                "youth": -30,
-                "mayor": 22
+                "eco": -38,
+                "youth": -35,
+                "mayor": 25
             },
             "news": {
                 "good": false,
-                "headline": "KÖMÜRLÜ SANTRAL BÜYÜTÜLÜYOR: COP31 TEHLİKEDE!",
-                "text": "Kömür kazanlarına onay çıktı. Şehrin havası simsiyah oldu, çevre örgütleri genel grev çağrısı yaptı."
+                "headline": "TERMİK SANTRALE EK KAZAN İZNİ ÇIKTI: GÖKYÜZÜNÜ SİYAH BULUTLAR KAPLADI!",
+                "text": "Kömürlü santralin kapasite artışı onaylandı. Şehirde solunum yolu şikayetleri artarken COP31 temsilcileri kenti uyardı."
             }
         },
         "reject": {
             "effects": {
                 "budget": 0,
-                "eco": 32,
-                "youth": 22,
+                "eco": 30,
+                "youth": 25,
                 "mayor": -20
             },
             "news": {
                 "good": true,
-                "headline": "KÖMÜR SANTRALİ GENİŞLETMESİNE VETO!",
-                "text": "Çevre Müdürlüğü linyit lobisine geçit vermedi. Temiz enerji yatırımları kararlılıkla korunuyor."
+                "headline": "KÖMÜR KAZANINA GEÇİT YOK: ŞEHRİN HAVASI KORUNDU!",
+                "text": "Çevre Müdürlüğü termik santralin ek kazan başvurusunu veto etti. Gençler ve sivil toplum kararı kutladı."
             }
         }
     },
@@ -4008,26 +4319,34 @@
         "sender": "Bisikletliler Derneği & Gençlik Temsilcisi (Ali)",
         "avatar": "images/ali.png",
         "cost": -125000,
-        "costText": "Maliyet: 125.000 ₺ • Bisiklet Yolu Hattı",
-        "body": "Üniversite kampüsünden şehir merkezine ve sahil kordonuna uzanan 14 km'lik korumalı ve güneş enerjili aydınlatmalı bisiklet otoyolu projesidir.",
-        "risk": "Risk: Düşük • COP31 Teması: Karbon Ayak İzi & Ulaşım",
-        "consultant": {
-            "name": "Ali",
-            "role": "Gençlik İklim Meclisi Başkanı",
-            "avatar": "images/ali.png",
-            "advice": "Müdürüm, her gün binlerce üniversiteli genç otobüslerde sıkışıyor veya araba trafiğinde kalıyor. Bu 14 km'lik korumalı yol açılırsa 5000 kişi her gün pedal çevirecek, egzoz salımı sıfırlanacak!"
+        "costText": "Maliyet: 125.000 ₺ • Ayrılmış Güvenli Şerit & Asfalt",
+        "body": "Konyaaltı sahilinden Lara ve Üniversite kampüsüne kadar uzanan 18 kilometrelik kesintisiz, bariyerle ayrılmış akıllı bisiklet yolu ve skuter park istasyonları yapımıdır.",
+        "risk": "Risk: Orta • COP31 Teması: Sürdürülebilir Ulaşım",
+        "consultants": {
+            "pro": {
+                "name": "Ali",
+                "role": "Gençlik İklim Elçisi",
+                "avatar": "images/ali.png",
+                "advice": "Müdürüm, Antalya'nın düz coğrafyası bisiklet için biçilmiş kaftan! Güvenli yol olursa günde 15.000 kişi işe ve okula bisikletle gider, trafik ve emisyon yarıya iner."
+            },
+            "con": {
+                "name": "Ekrem Bey",
+                "role": "Mali Hizmetler & Bütçe Müdürü",
+                "avatar": "images/ekrem.png",
+                "advice": "Müdür Bey, 125.000 TL maliyetin yanı sıra bir araç şeridini bisiklete vermek akşam saatlerinde otomobil kuyruklarını uzatıp araç sürücülerinden şikayet alabilir."
+            }
         },
         "accept": {
             "effects": {
                 "budget": -125000,
-                "eco": 24,
-                "youth": 24,
-                "mayor": 6
+                "eco": 25,
+                "youth": 28,
+                "mayor": -5
             },
             "news": {
                 "good": true,
-                "headline": "14 KM'LİK BİSİKLET OTOYOLU AÇILDI!",
-                "text": "Gençler pedal basarak trafiği ve karbonu hafifletti. Caddeler şenlik havasına büründü."
+                "headline": "18 KİLOMETRELİK KESİNTİSİZ BİSİKLET OTOYOLU AÇILDI!",
+                "text": "Üniversiteliler ve vatandaşlar sahil boyunca güvenle pedal basıyor. Şehir merkezinde otomobil egzozu hissedilir derecede azaldı."
             }
         },
         "reject": {
@@ -4035,52 +4354,532 @@
                 "budget": 0,
                 "eco": -10,
                 "youth": -20,
-                "mayor": 0
+                "mayor": 5
             },
-            "news": null
+            "news": {
+                "good": false,
+                "headline": "BİSİKLET OTOYOLU PROJESİNE ARAÇ SÜRÜCÜSÜ ENGELİ!",
+                "text": "Trafik sıkışır endişesiyle bisiklet yolu projesi rafa kalktı. Gençler kararı protesto etti."
+            }
         }
     },
     {
         "id": 20,
         "subject": "KONU: Jeotermal Bölgesel Konut Isıtma Şebekesi",
         "sender": "Yenilenebilir Enerji Dairesi & İl Özel İdare",
-        "avatar": "images/selin.png",
+        "avatar": "images/ece.png",
         "cost": -260000,
-        "costText": "Maliyet: 260.000 ₺ • Jeotermal Şebeke",
-        "body": "Şehrin kuzeyindeki jeotermal sıcak su kuyularının kapalı devre boru hattıyla 4.000 konutun ısıtılmasında kullanılması ve fosil yakıt tüketiminin sıfırlanması projesidir.",
-        "risk": "Risk: Orta • COP31 Teması: Yenilenebilir Isıtma",
-        "consultant": {
-            "name": "Dr. Selin",
-            "role": "Jeotermal ve Temiz Enerji Danışmanı",
-            "avatar": "images/selin.png",
-            "advice": "260.000 TL bütçe gerektiriyor ancak 4.000 ailenin kış boyu kömür sobası yakmasını tamamen önleyecek. Şehrin kış aylarındaki hava kirliliğini %35 kalıcı olarak düşürecek muazzam bir adım."
+        "costText": "Maliyet: 260.000 ₺ • Jeotermal Kuyu & Boru Hattı",
+        "body": "Şehir sınırındaki derin jeotermal sıcak su kaynağından 4.000 konutun ısıtılması için ana iletim hattı ve ısı eşanjör merkezi inşasıdır.",
+        "risk": "Risk: Yüksek • COP31 Teması: Yenilenebilir Enerji",
+        "consultants": {
+            "pro": {
+                "name": "Ece",
+                "role": "Yenilenebilir Enerji Mühendisi",
+                "avatar": "images/ece.png",
+                "advice": "Müdürüm, yerin altındaki sıcak su sonsuz ve yerli bir enerji kaynağıdır. 4.000 konut kömür ve doğalgaz yakmaktan kurtulur, şehrin kış hava kalitesi mükemmel olur."
+            },
+            "con": {
+                "name": "Ekrem Bey",
+                "role": "Mali Hizmetler & Bütçe Müdürü",
+                "avatar": "images/ekrem.png",
+                "advice": "Müdür Bey, 260.000 TL nakit çıkışı kasamız için çok ağır bir darbe! Şebeke boruları döşenirken şehrin altı üstüne gelecek."
+            }
         },
         "accept": {
             "effects": {
                 "budget": -260000,
                 "eco": 32,
-                "youth": 16,
-                "mayor": 14
+                "youth": 15,
+                "mayor": 10
             },
             "news": {
                 "good": true,
-                "headline": "4 BİN KONUT JEOTERMALLE ISINIYOR!",
-                "text": "Kömür dumanı tarihe karıştı, kış ortasında bile şehirde masmavi bir gökyüzü hakim."
+                "headline": "4.000 KONUT YERİN ALTINDAN GELEN SICAK SUYLA ISINIYOR!",
+                "text": "Jeotermal merkezi ısıtma devreye girdi. Kış aylarında mahallenin üzerine çöken kömür dumanı tamamen tarihe karıştı."
+            }
+        },
+        "reject": {
+            "effects": {
+                "budget": 0,
+                "eco": -15,
+                "youth": -8,
+                "mayor": -4
+            },
+            "news": {
+                "good": false,
+                "headline": "JEOTERMAL ISITMA PROJESİ MALİYET ENGELİNE TAKILDI!",
+                "text": "Yüksek başlangıç maliyeti sebebiyle jeotermal kaynak atıl bırakıldı. Konutlar pahalı fosil yakıtlarla ısınmaya devam edecek."
+            }
+        }
+    },
+    {
+        "id": 21,
+        "subject": "KONU: [ZİNCİR-1A] Kaleiçi Çeperi Akıllı Katlı Transfer Hub'ı ve Tramvay İstasyonu",
+        "sender": "Ulaşım ve Fen İşleri Dairesi",
+        "avatar": "images/baris.png",
+        "cost": -450000,
+        "costText": "Maliyet: 450.000 ₺ • Büyük Altyapı Yatırımı",
+        "body": "Tarihi Kaleiçi ve çarşı merkezindeki araç kaosunu kalıcı olarak çözmek için, çepere çatısı güneş panelli, elektrikli şarj istasyonlu ve tramvay aktarmalı 400 araçlık akıllı katlı transfer merkezi yapılmasıdır.",
+        "risk": "Risk: Çok Yüksek (Bütçe) • COP31: İklim Dirençli Şehirler",
+        "onAcceptChainMemoId": 22,
+        "onRejectChainMemoId": 23,
+        "consultants": {
+            "pro": {
+                "name": "Barış",
+                "role": "Kentsel Tasarım & Şehir Plancısı",
+                "avatar": "images/baris.png",
+                "advice": "Müdür Bey, tarihi merkezi araçlardan arındırıp yayalaştırmak istiyorsak bu transfer otoparkı olmazsa olmazdır! Araçlar merkeze girmeden toplanırsa tarihi doku korunur, esnaf kazanır."
+            },
+            "con": {
+                "name": "Ekrem Bey",
+                "role": "Mali Hizmetler & Bütçe Müdürü",
+                "avatar": "images/ekrem.png",
+                "advice": "Müdürüm dikkat! 450.000 TL nakit bütçemizin neredeyse yarısı demek! Bu büyüklükte bir harcama yaparsak diğer tüm çevre projelerinde elimiz kolumuz bağlanır, iflas riski kapıya dayanır!"
+            }
+        },
+        "accept": {
+            "effects": {
+                "budget": -450000,
+                "eco": 18,
+                "youth": 12,
+                "mayor": 15
+            },
+            "news": {
+                "good": true,
+                "headline": "KALEİÇİ ÇEPERİNE AKILLI TRANSFER MERKEZİ ONAYLANDI!",
+                "text": "Tarihi çarşıya araç girişini engelleyecek dev transfer otoparkının temeli atıldı. Esnaf ve şehir plancıları kararı coşkuyla karşıladı."
+            }
+        },
+        "reject": {
+            "effects": {
+                "budget": 0,
+                "eco": -12,
+                "youth": -12,
+                "mayor": -8
+            },
+            "news": {
+                "good": false,
+                "headline": "KALEİÇİ TRANSFER OTOPARKI BÜTÇE KORKUSUYLA REDDEDİLDİ!",
+                "text": "Çevre Müdürlüğü 450.000 TL maliyetli projeyi onaylamadı. Tarihi sokaklarda araç kilitlenmesi ve egzoz kaosu devam ediyor."
+            }
+        }
+    },
+    {
+        "id": 22,
+        "subject": "KONU: [ZİNCİR-1B] Kaleiçi Tarihi Aksının Tamamen Yayalaştırılması & Elektrikli Tramvay Seferleri",
+        "sender": "Gençlik İklim Meclisi & Ulaşım Dairesi (Ali)",
+        "avatar": "images/ali.png",
+        "cost": -150000,
+        "costText": "Maliyet: 150.000 ₺ • Elektrikli Ring & Peyzaj",
+        "body": "DÜNKÜ KARARINIZIN DEVAMI: Çeperdeki transfer otoparkı onaylandığı için tarihi Kaleiçi sokakları tamamen motorlu araçlara kapatılarak nostaljik elektrikli tramvay ring seferlerine açılması teklifidir.",
+        "risk": "Risk: Düşük • COP31 Teması: Sürdürülebilir Ulaşım",
+        "isChainFollowup": true,
+        "consultants": {
+            "pro": {
+                "name": "Ali",
+                "role": "Gençlik İklim Elçisi",
+                "avatar": "images/ali.png",
+                "advice": "Müdürüm, transfer otoparkı sayesinde araçlar dışarıda kaldı! Şimdi caddeleri çiçeklendirme ve elektrikli ring zamanı. Tarihi Kaleiçi Avrupa'nın en yeşil turizm merkezine dönecek!"
+            },
+            "con": {
+                "name": "Müsteşar Tarık",
+                "role": "Ticaret Odası Temsilcisi",
+                "avatar": "images/tarik.png",
+                "advice": "Müdür Bey, toptancıların mal indirme-bindirme saatlerine katı kurallar gelirse birkaç dükkan sahibi sitem edebilir ama genel gidişattan esnaf memnun."
+            }
+        },
+        "accept": {
+            "effects": {
+                "budget": -150000,
+                "eco": 28,
+                "youth": 25,
+                "mayor": 15
+            },
+            "news": {
+                "good": true,
+                "headline": "TARİHİ KALEİÇİ TAMAMEN YAYALAŞTI: ELEKTRİKLİ TRAMVAY SEFERDE!",
+                "text": "Egzoz dumanı yerine kuş sesleri yankılanıyor. Yerli ve yabancı turistler yayalaştırılan tarihi sokaklara akın etti."
+            }
+        },
+        "reject": {
+            "effects": {
+                "budget": 0,
+                "eco": -5,
+                "youth": -15,
+                "mayor": -5
+            },
+            "news": {
+                "good": false,
+                "headline": "OTOPARK YAPILDI AMA YAYALAŞTIRMA YARIDA KALDI!",
+                "text": "Transfer merkezi yapılmasına rağmen tarihi merkezin yayalaştırma kararı imzalanmadı. Gençler yarım kalan adıma tepkili."
+            }
+        }
+    },
+    {
+        "id": 23,
+        "subject": "KONU: [ZİNCİR-1C] Kaleiçi Esnafından Egzoz, Park Yeri ve Trafik İsyanı",
+        "sender": "Kaleiçi Esnafları Yardımlaşma Derneği (Müsteşar Tarık)",
+        "avatar": "images/tarik.png",
+        "cost": -60000,
+        "costText": "Maliyet: 60.000 ₺ • Acil Trafik Zabıtası Mesaisi",
+        "body": "DÜNKÜ KARARINIZIN DEVAMI: Transfer otoparkı reddedildiği için Kaleiçi sokakları kilitlendi, ambulans dahi giremiyor. Esnafın zararı için acil çekici ve zabıta filosu tahsisini talep ediyoruz.",
+        "risk": "Risk: Yüksek (Kriz) • COP31 Teması: Kriz Yönetimi",
+        "isChainFollowup": true,
+        "consultants": {
+            "pro": {
+                "name": "Müsteşar Tarık",
+                "role": "Ticaret Odası Temsilcisi",
+                "avatar": "images/tarik.png",
+                "advice": "Müdürüm, dün otoparkı yapmadığımız için sokaklar otoparka döndü! Hiç olmazsa 60.000 TL zabıta ödeneği verin de esnaf dükkanının önündeki arabaları çektirelim."
+            },
+            "con": {
+                "name": "Barış",
+                "role": "Şehir Plancısı",
+                "avatar": "images/baris.png",
+                "advice": "Müdür Bey, bu kalıcı bir çözüm değil sadece pansumandır. Asıl kök sebebi çözmediğimiz için hava kirliliği ve egzoz dumanı katlanarak artıyor."
+            }
+        },
+        "accept": {
+            "effects": {
+                "budget": -60000,
+                "eco": -15,
+                "youth": -15,
+                "mayor": 5
+            },
+            "news": {
+                "good": false,
+                "headline": "KALEİÇİ'NDE ÇEKİCİ VE SİREN SESLERİ: TRAFİK KAOSU SÜRÜYOR!",
+                "text": "Transfer merkezi yerine zabıtayla düzen sağlanmaya çalışılıyor. Sokaklarda gerginlik ve hava kirliliği devam ediyor."
+            }
+        },
+        "reject": {
+            "effects": {
+                "budget": 0,
+                "eco": -10,
+                "youth": -20,
+                "mayor": -18
+            },
+            "news": {
+                "good": false,
+                "headline": "KALEİÇİ ESNAFI BELEDİYE ÖNÜNDE KONVOY YAPTI!",
+                "text": "Otoparkın ardından zabıta desteği de verilmeyince esnaf belediye binasını kornalarla kuşattı."
+            }
+        }
+    },
+    {
+        "id": 24,
+        "subject": "KONU: [ZİNCİR-2A] Kumluca ve Aksu Seraları Basınçlı Damla Sulama & Tarımsal GES Paketi",
+        "sender": "İl Tarım Müdürlüğü & Ziraat Odası (Ece)",
+        "avatar": "images/ece.png",
+        "cost": -550000,
+        "costText": "Maliyet: 550.000 ₺ • İflas Eşiği Yatırımı!",
+        "body": "Antalya'nın 40.000 dekarlık örtüaltı seralarında vahşi yeraltı suyu çekimini durduracak basınçlı kapalı devre damla sulama altyapısı ve seraların çatılarına tarımsal güneş (Agri-PV) paneli kurulmasıdır.",
+        "risk": "Risk: Aşırı Yüksek (İflas Riski) • COP31: Gıda Güvenliği & Su",
+        "onAcceptChainMemoId": 25,
+        "onRejectChainMemoId": 26,
+        "consultants": {
+            "pro": {
+                "name": "Ece",
+                "role": "Su Yönetimi ve Tarımsal İnovasyon",
+                "avatar": "images/ece.png",
+                "advice": "Müdürüm, Antalya Türkiye'nin kışlık sebzesinin yarısını karşılıyor! Yeraltı su seviyesi kritik eşiğe indi. Bu dev yatırımı yaparsak su tüketimi %50 düşer ve seralar sıfır karbona yaklaşır."
+            },
+            "con": {
+                "name": "Ekrem Bey",
+                "role": "Mali Hizmetler & Bütçe Müdürü",
+                "avatar": "images/ekrem.png",
+                "advice": "Müdür Bey İNTİHAR MI EDİYORUZ?! 550.000 TL kasamızdaki nakdin yarısından fazlası! Tek bir acil durumda belediye iflas bayrağını çeker. Başkan bizi derhal kapının önüne koyar!"
+            }
+        },
+        "accept": {
+            "effects": {
+                "budget": -550000,
+                "eco": 32,
+                "youth": 15,
+                "mayor": -6
+            },
+            "news": {
+                "good": true,
+                "headline": "TÜRKİYE'NİN İLK SIFIR EMİSYONLU AKILLI SERA BÖLGESİ KURULUYOR!",
+                "text": "Devasa bütçe fedakarlığıyla Kumluca seraları güneş enerjili damla sulamaya geçti. Yeraltı su rezervleri nefes aldı."
+            }
+        },
+        "reject": {
+            "effects": {
+                "budget": 0,
+                "eco": -22,
+                "youth": -15,
+                "mayor": 8
+            },
+            "news": {
+                "good": false,
+                "headline": "SERA SULAMA YATIRIMI ÇOK PAHALI BULUNDU VE REDDEDİLDİ!",
+                "text": "Bütçe korunurken çiftçiler derin su kuyularından vahşi sulamaya devam edecek. Yeraltı suları alarm veriyor."
+            }
+        }
+    },
+    {
+        "id": 25,
+        "subject": "KONU: [ZİNCİR-2B] Toptancı Hal Atıklarından Biyometan Gazı ve Organik Kompost Fabrikası",
+        "sender": "Çiftçi Birlikleri & Yenilenebilir Enerji (Dr. Selin)",
+        "avatar": "images/selin.png",
+        "cost": 250000,
+        "costText": "Gelir: +250.000 ₺ (Elektrik & Gübre Satış Geliri)",
+        "body": "DÜNKÜ KARARINIZIN DEVAMI: Damla sulama ve GES desteği alan seralardan toplanan tonlarca çürük domates ve hal atığıyla biyogaz tesisi kuruldu. Şebekeye elektrik satılarak kasaya 250.000 TL gelir devredilmesi arz edilir.",
+        "risk": "Risk: Çok Düşük (Kazanım) • COP31: Sıfır Atık & Enerji",
+        "isChainFollowup": true,
+        "consultants": {
+            "pro": {
+                "name": "Dr. Selin",
+                "role": "Biyoteknoloji Danışmanı",
+                "avatar": "images/selin.png",
+                "advice": "Müdürüm, dünkü büyük fedakarlığınız meyvesini verdi! Çiftçiler atıklarını tesise getirdi; üretilen temiz elektrik ve organik kompost satışından belediyeye 250.000 TL taze nakit aktarıyoruz!"
+            },
+            "con": {
+                "name": "Müsteşar Tarık",
+                "role": "Ticaret Odası Temsilcisi",
+                "avatar": "images/tarik.png",
+                "advice": "Tesis kokusu komşu parselleri rahatsız etmemeli. Filtre bakımları düzenli yapılırsa mükemmel bir döngüsel ekonomi modeli."
+            }
+        },
+        "accept": {
+            "effects": {
+                "budget": 250000,
+                "eco": 26,
+                "youth": 20,
+                "mayor": 20
+            },
+            "news": {
+                "good": true,
+                "headline": "ÇÜRÜK DOMATESLER BELEDİYEYE ÇEYREK MİLYON KAZANDIRDI!",
+                "text": "Toptancı halinin çöpleri elektrik ve organik gübreye dönüştü. Belediyenin dünkü sera yatırımı büyük zaferle sonuçlandı."
+            }
+        },
+        "reject": {
+            "effects": {
+                "budget": 0,
+                "eco": -5,
+                "youth": -10,
+                "mayor": -10
+            },
+            "news": {
+                "good": false,
+                "headline": "BİYOGAZ GELİR ORTAKLIĞI PROTOKOLÜ İMZALANMADI!",
+                "text": "Hal atıklarından elde edilecek çeyrek milyonluk gelir protokolü reddedildi. Organik atıklar çöplüğe saçılmaya devam edecek."
+            }
+        }
+    },
+    {
+        "id": 26,
+        "subject": "KONU: [ZİNCİR-2C] Kıyı Akiferlerinde Tuzlanma ve Çiftçilerin Acil Su Talebi",
+        "sender": "Aksu ve Kumluca Çiftçi Temsilcileri",
+        "avatar": "images/ece.png",
+        "cost": -90000,
+        "costText": "Maliyet: 90.000 ₺ • Acil Tanker ve Kuyu Islahı",
+        "body": "DÜNKÜ KARARINIZIN DEVAMI: Damla sulama desteği verilmediği için çiftçiler artezyen kuyularını derinleştirdi ve deniz suyu tatlı suya karıştı. Çiftçilerin tuzlanan seralarını kurtarmak için acil 90.000 TL su tankeri ödeneği talep edilmektedir.",
+        "risk": "Risk: Yüksek • COP31 Teması: Kriz Yönetimi & Su",
+        "isChainFollowup": true,
+        "consultants": {
+            "pro": {
+                "name": "Ece",
+                "role": "Su Yönetimi Uzmanı",
+                "avatar": "images/ece.png",
+                "advice": "Müdürüm dün uyardım! Şimdi deniz suyu yeraltı havzamızı işgal etti. Bu 90.000 TL'yi ödemezsek bu kış şehre domates ve salatalık giremez!"
+            },
+            "con": {
+                "name": "Ekrem Bey",
+                "role": "Bütçe Müdürü",
+                "avatar": "images/ekrem.png",
+                "advice": "Yine para istiyorlar Müdür Bey! Dün yatırım yapmadık diye bugün yangın söndürme parası ödüyoruz. Ama bu tankerler sorunu kökten çözmez."
+            }
+        },
+        "accept": {
+            "effects": {
+                "budget": -90000,
+                "eco": -10,
+                "youth": -15,
+                "mayor": -5
+            },
+            "news": {
+                "good": false,
+                "headline": "SERALARA ACİL TANKERLE TATLI SU TAŞINIYOR: AKİFERLER TUZLANDI!",
+                "text": "Vahşi sulamanın faturası ağır oldu. Deniz suyu kuyulara dolunca belediye acil tanker seferberliği ilan etti."
             }
         },
         "reject": {
             "effects": {
                 "budget": 0,
                 "eco": -20,
-                "youth": -10,
-                "mayor": -6
+                "youth": -25,
+                "mayor": -20
             },
-            "news": null
+            "news": {
+                "good": false,
+                "headline": "ÇİFTÇİLERİN KURAKLIK TALEBİNE RET: SERALARDA ÜRÜNLER KURUDU!",
+                "text": "Tanker desteği verilmeyince tuzlu su yüzünden binlerce dönüm sera kurudu. Sebze fiyatları 3 katına fırladı."
+            }
+        }
+    },
+    {
+        "id": 27,
+        "subject": "KONU: [ZİNCİR-3A] Toroslar Yangın Savunma Termal İHA İstasyonları ve Erken Uyarı Radarları",
+        "sender": "Orman Bölge Müdürlüğü & AFAD (Doç. Dr. Kerem)",
+        "avatar": "images/kerem.png",
+        "cost": -400000,
+        "costText": "Maliyet: 400.000 ₺ • Yangın Teşhis Ağı",
+        "body": "Antalya ve Manavgat dağlık hattında 45 dereceyi aşan aşırı sıcak hava dalgalarında çıkabilecek orman yangınlarını ilk 3 dakikada tespit edecek 4 adet otonom termal İHA üssü kurulmasıdır.",
+        "risk": "Risk: Çok Yüksek • COP31 Teması: İklim Dirençli Şehirler",
+        "onAcceptChainMemoId": 28,
+        "onRejectChainMemoId": 29,
+        "consultants": {
+            "pro": {
+                "name": "Doç. Dr. Kerem",
+                "role": "Çevre Sağlığı ve Ekoloji Uzmanı",
+                "avatar": "images/kerem.png",
+                "advice": "Müdürüm, Toros dağları Antalya'nın kliması ve su kaynağıdır. Yangın başladıktan sonra helikopter kaldırmak milyonlarca liraya mal olur. Termal İHA'lar yangını duman çıkmadan tespit edip söndürür!"
+            },
+            "con": {
+                "name": "Müsteşar Tarık",
+                "role": "Ticaret Odası Temsilcisi",
+                "avatar": "images/tarik.png",
+                "advice": "Müdür Bey, orman yangınları Orman Genel Müdürlüğü'nün sorumluluğundadır. Belediye kasasından 400.000 TL vermek bütçemizi tüketir; bu harcama kentsel hizmetlerimizi aksatır."
+            }
+        },
+        "accept": {
+            "effects": {
+                "budget": -400000,
+                "eco": 28,
+                "youth": 18,
+                "mayor": 0
+            },
+            "news": {
+                "good": true,
+                "headline": "TOROSLARIN ZİRVESİNE TERMAL GÖZLER YERLEŞTİRİLDİ!",
+                "text": "Otonom termal İHA'lar 7/24 devriyeye başladı. Antalya ormanları olası sıcak dalgasına karşı çelikten bir savunma hattına kavuştu."
+            }
+        },
+        "reject": {
+            "effects": {
+                "budget": 0,
+                "eco": -25,
+                "youth": -18,
+                "mayor": 8
+            },
+            "news": {
+                "good": false,
+                "headline": "ORMAN YANGINI İHA PROJESİ MALİYET GEREKÇESİYLE REDDEDİLDİ!",
+                "text": "Bütçe korunurken uzmanlar yaklaşan aşırı sıcak hava dalgası öncesi Toroslar'ın savunmasız bırakıldığı uyarısında bulundu."
+            }
+        }
+    },
+    {
+        "id": 28,
+        "subject": "KONU: [ZİNCİR-3B] Akdeniz Genç İklim Muhafızları ve Toros Eko-Koruculuk Ağı",
+        "sender": "Gençlik Meclisi ve Doğa Dernekleri (Ali)",
+        "avatar": "images/ali.png",
+        "cost": -70000,
+        "costText": "Maliyet: 70.000 ₺ • Gençlik Eko-Kampı & Telsiz Donanımı",
+        "body": "DÜNKÜ KARARINIZIN DEVAMI: İHA istasyonları sayesinde 3 yangın başlangıcı anında söndürüldü! Gençler Toroslar'da nöbet tutmak ve orman köylerinde iklim eğitimi vermek için 300 kişilik Gönüllü İklim Muhafızı ağı kuruyor.",
+        "risk": "Risk: Çok Düşük • COP31 Teması: Gençlik & Eğitim",
+        "isChainFollowup": true,
+        "consultants": {
+            "pro": {
+                "name": "Ali",
+                "role": "Gençlik İklim Elçisi",
+                "avatar": "images/ali.png",
+                "advice": "Müdürüm, dün kurduğumuz İHA ağı sayesinde dağlarımız kül olmaktan kurtuldu! Gençler inanılmaz gururlu. 70.000 TL kamp ve telsiz hibesiyle 300 genç Toroslar'a bekçi olacak!"
+            },
+            "con": {
+                "name": "Ekrem Bey",
+                "role": "Mali Hizmetler & Bütçe Müdürü",
+                "avatar": "images/ekrem.png",
+                "advice": "Gençlerin hevesi güzel ama dün 400.000 TL verdik, bugün 70.000 TL daha vermek bütçe dengemizi zorluyor Müdürüm."
+            }
+        },
+        "accept": {
+            "effects": {
+                "budget": -70000,
+                "eco": 25,
+                "youth": 35,
+                "mayor": 12
+            },
+            "news": {
+                "good": true,
+                "headline": "300 GENÇ TOROSLAR'IN İKLİM MUHAFIZI OLDU!",
+                "text": "Orman köylerinde konuşlanan genç iklim elçileri doğa nöbetine başladı. Uluslararası COP31 komitesi projeyi örnek gösterdi."
+            }
+        },
+        "reject": {
+            "effects": {
+                "budget": 0,
+                "eco": -5,
+                "youth": -25,
+                "mayor": 0
+            },
+            "news": {
+                "good": false,
+                "headline": "GENÇLERİN EKO-KORUCULUK TALEBİNE RET!",
+                "text": "İHA başarısının ardından gençlerin gönüllü koruculuk projesine ödenek verilmedi. Gençlik örgütleri hayal kırıklığı yaşıyor."
+            }
+        }
+    },
+    {
+        "id": 29,
+        "subject": "KONU: [ZİNCİR-3C] Toroslar Eteklerinde Kontrolsüz Örtü Yangını ve Şehir Duman Alarmı",
+        "sender": "Acil Afet Koordinasyon Merkezi",
+        "avatar": "images/kerem.png",
+        "cost": -120000,
+        "costText": "Maliyet: 120.000 ₺ • Acil İtfaiye Takviyesi & Sağlık Çadırları",
+        "body": "DÜNKÜ KARARINIZIN DEVAMI: Erken uyarı İHA radarları kurulmadığı için Manavgat eteklerindeki örtü yangını 2 saat geç fark edildi. Alevlerin şehir girişine yaklaşmasını önlemek amacıyla acil 120.000 TL itfaiye takviyesi talep edilmektedir.",
+        "risk": "Risk: Kritik (Afet) • COP31 Teması: Kriz Yönetimi",
+        "isChainFollowup": true,
+        "consultants": {
+            "pro": {
+                "name": "Doç. Dr. Kerem",
+                "role": "Çevre ve Halk Sağlığı Uzmanı",
+                "avatar": "images/kerem.png",
+                "advice": "Müdürüm dün uyardım! Şimdi duman şehir merkezine indi, astım hastaları hastanelere koşuyor. Bu 120.000 TL'yi derhal onaylamazsak yangın yerleşim yerlerine sıçrar!"
+            },
+            "con": {
+                "name": "Ekrem Bey",
+                "role": "Bütçe Müdürü",
+                "avatar": "images/ekrem.png",
+                "advice": "Dün 400.000 TL'yi çok bulup vermedik ama bugün 120.000 TL afete harcıyoruz ve üstüne ciğerlerimiz yandı Müdürüm..."
+            }
+        },
+        "accept": {
+            "effects": {
+                "budget": -120000,
+                "eco": -25,
+                "youth": -20,
+                "mayor": -12
+            },
+            "news": {
+                "good": false,
+                "headline": "TOROSLARDA YANGIN ALARMI: ŞEHRE DUMAN VE KÜL YAĞIYOR!",
+                "text": "Erken teşhis sistemi olmadığı için alevler yayıldı. İtfaiye yangını güçlükle kontrol altına alırken çevre puanı ağır darbe aldı."
+            }
+        },
+        "reject": {
+            "effects": {
+                "budget": 0,
+                "eco": -40,
+                "youth": -30,
+                "mayor": -25
+            },
+            "news": {
+                "good": false,
+                "headline": "YANGIN TAKVİYESİNE RET ÇIKTI: MANAVGAT ORMANLARI KÜLE DÖNDÜ!",
+                "text": "Acil takviye bütçesi verilmeyince yangın rüzgarla yayıldı. Şehir hava kalitesi kırmızı alarm seviyesine düştü."
+            }
         }
     }
 ];
 
-    let deck = [...officialMemos].sort(() => Math.random() - 0.5);
+    // Takip evrakları (22, 23, 25, 26, 28, 29) sadece kararlarla zincirleme açılır
+    const initialPool = officialMemos.filter(m => !m.isChainFollowup);
+    let deck = [...initialPool].sort(() => Math.random() - 0.5);
     let cardIndex = 0;
 
     /* ============================================================
@@ -4115,11 +4914,20 @@
     const mayorFeedbackTitle = document.getElementById('mayorFeedbackTitle');
     const mayorFeedbackText = document.getElementById('mayorFeedbackText');
 
-    const emailConsultantAvatar = document.getElementById('emailConsultantAvatar');
-    const emailConsultantName = document.getElementById('emailConsultantName');
-    const emailConsultantRole = document.getElementById('emailConsultantRole');
     const emailMemoSubject = document.getElementById('emailMemoSubject');
-    const emailConsultantAdvice = document.getElementById('emailConsultantAdvice');
+    const emailConsultantAvatarPro = document.getElementById('emailConsultantAvatarPro');
+    const emailConsultantNamePro = document.getElementById('emailConsultantNamePro');
+    const emailConsultantRolePro = document.getElementById('emailConsultantRolePro');
+    const emailConsultantAdvicePro = document.getElementById('emailConsultantAdvicePro');
+    const emailConsultantAvatarCon = document.getElementById('emailConsultantAvatarCon');
+    const emailConsultantNameCon = document.getElementById('emailConsultantNameCon');
+    const emailConsultantRoleCon = document.getElementById('emailConsultantRoleCon');
+    const emailConsultantAdviceCon = document.getElementById('emailConsultantAdviceCon');
+    // Backward compatibility refs
+    const emailConsultantAvatar = emailConsultantAvatarPro;
+    const emailConsultantName = emailConsultantNamePro;
+    const emailConsultantRole = emailConsultantRolePro;
+    const emailConsultantAdvice = emailConsultantAdvicePro;
 
     const drawerModal = document.getElementById('drawerModal');
     const btnDrawerClose = document.getElementById('btnDrawerClose');
@@ -4290,7 +5098,7 @@
         }).catch(() => {});
       } else if (navigator.clipboard) {
         navigator.clipboard.writeText(shareText).then(() => {
-          alert('📋 Başarı karnen ve oyun linki panoya kopyalandı! Arkadaşlarınla veya jüriyle paylaşabilirsin.');
+          showOfficeNotice('BAŞARI KARNESİ KOPYALANDI', 'Pano Aktarımı Başarılı', 'Başarı karneniz ve oyun linki panoya kopyalandı! Arkadaşlarınızla veya jüriyle paylaşabilirsiniz.', '📋', '#34d399');
         }).catch(() => {
           prompt('Sonucunu kopyala:', shareText);
         });
@@ -4397,7 +5205,7 @@
 
     function loadMemo() {
       if (cardIndex >= deck.length) {
-        deck = [...officialMemos].sort(() => Math.random() - 0.5);
+        deck = [...initialPool].sort(() => Math.random() - 0.5);
         cardIndex = 0;
       }
 
@@ -4486,6 +5294,13 @@
 
       // CASE: POSTPONE / SÜMEN ALTI (Sayfa 3)
       if (choice === 'postpone') {
+        if (postponedPile.length >= 3) {
+          isProcessing = false;
+          soundPhoneRing();
+          const modal = document.getElementById('drawerFullModal');
+          if (modal) modal.classList.add('active');
+          return;
+        }
         stampPostponed.classList.add('stamped');
         soundPaperSlide();
         setTimeout(() => {
@@ -4504,6 +5319,19 @@
       }
 
       const outcome = choice === 'accept' ? item.accept : item.reject;
+
+      // Ön-Chain Karar Ağacı Tetikleyicisi (Antalya Senaryoları)
+      if (choice === 'accept' && item.onAcceptChainMemoId) {
+        const nextMemo = officialMemos.find(m => m.id === item.onAcceptChainMemoId);
+        if (nextMemo && !pendingChainMemos.some(p => p.id === nextMemo.id)) {
+          pendingChainMemos.push(nextMemo);
+        }
+      } else if (choice === 'reject' && item.onRejectChainMemoId) {
+        const nextMemo = officialMemos.find(m => m.id === item.onRejectChainMemoId);
+        if (nextMemo && !pendingChainMemos.some(p => p.id === nextMemo.id)) {
+          pendingChainMemos.push(nextMemo);
+        }
+      }
 
       if (choice === 'accept') {
         acceptedCount++;
@@ -4645,6 +5473,16 @@
         dayStartStats = { budget: stats.budget, eco: stats.eco, youth: stats.youth, mayor: stats.mayor };
         todayNewsList = [];
 
+        // Ön-Chain: Dünkü kararlardan doğan bağlantılı evrakları sabah masanın en üstüne koy
+        if (pendingChainMemos.length > 0) {
+          const chainMemosToInsert = [...pendingChainMemos];
+          pendingChainMemos = [];
+          deck.splice(cardIndex, 0, ...chainMemosToInsert);
+          setTimeout(() => {
+            showOfficeNotice('DÜNKÜ KARARINIZIN YANKISI', 'Karar Ağacı Takip Evrakı', `"${chainMemosToInsert[0].subject}" dosyası dünkü tercihiniz doğrultusunda ivedilikle masanıza ulaştı!`, '🔗', '#38bdf8');
+          }, 600);
+        }
+
         // Sayfa 3 Kuralı: Gün bitince sümen altındaki evrakların yasal süresi 1 gün azalır
         for (let i = postponedPile.length - 1; i >= 0; i--) {
           postponedPile[i].daysLeft--;
@@ -4653,8 +5491,8 @@
             const expired = postponedPile.splice(i, 1)[0];
             deck.splice(cardIndex, 0, expired.memo);
             setTimeout(() => {
-              alert(`⚠️ YASAL İNCELEME SÜRESİ DOLDU: "${expired.memo.subject}" bugün karara bağlanmak üzere zorunlu olarak masanıza getirildi!`);
-            }, 600);
+              showOfficeNotice('YASAL İNCELEME SÜRESİ DOLDU', 'Mecburi Evrak Bildirimi', `"${expired.memo.subject}" için 3 günlük yasal inceleme süresi doldu ve bugün karara bağlanmak üzere zorunlu olarak masanıza getirildi!`, '⚠️', '#eab308');
+            }, 700);
           }
         }
         updateDrawerBadge();
@@ -4750,7 +5588,12 @@
 
     function updateDrawerBadge() {
       if (drawerBadgeText) {
-        drawerBadgeText.textContent = `Sümen Altı (${postponedPile.length}/3)`;
+        const isFull = postponedPile.length >= 3;
+        drawerBadgeText.textContent = `Sümen Altı (${postponedPile.length}/3${isFull ? ' - DOLU' : ''})`;
+        if (drawerBadgeText.parentElement) {
+          drawerBadgeText.parentElement.style.borderColor = isFull ? 'rgba(239, 68, 68, 0.8)' : 'rgba(255, 255, 255, 0.2)';
+          drawerBadgeText.parentElement.style.background = isFull ? 'rgba(185, 28, 28, 0.5)' : 'rgba(15, 20, 28, 0.85)';
+        }
       }
     }
 
@@ -4774,12 +5617,26 @@
 
       // Populate Tab 3 with current active memo's consultant
       const currentItem = deck[cardIndex] || officialMemos[0];
-      if (currentItem && currentItem.consultant) {
-        emailConsultantAvatar.src = currentItem.consultant.avatar;
-        emailConsultantName.textContent = currentItem.consultant.name;
-        emailConsultantRole.textContent = currentItem.consultant.role;
-        emailMemoSubject.textContent = currentItem.subject;
-        emailConsultantAdvice.textContent = `"${currentItem.consultant.advice}"`;
+      if (currentItem) {
+        if (emailMemoSubject) emailMemoSubject.textContent = currentItem.subject;
+
+        // Pro (Lehte Danışman)
+        const pro = (currentItem.consultants && currentItem.consultants.pro) ? currentItem.consultants.pro : currentItem.consultant;
+        if (pro) {
+          if (emailConsultantAvatarPro) emailConsultantAvatarPro.src = pro.avatar || 'images/selin.png';
+          if (emailConsultantNamePro) emailConsultantNamePro.textContent = pro.name;
+          if (emailConsultantRolePro) emailConsultantRolePro.textContent = pro.role;
+          if (emailConsultantAdvicePro) emailConsultantAdvicePro.textContent = `"${pro.advice}"`;
+        }
+
+        // Con (Çekince / Risk Danışmanı)
+        const con = (currentItem.consultants && currentItem.consultants.con) ? currentItem.consultants.con : null;
+        if (con) {
+          if (emailConsultantAvatarCon) emailConsultantAvatarCon.src = con.avatar || 'images/ekrem.png';
+          if (emailConsultantNameCon) emailConsultantNameCon.textContent = con.name;
+          if (emailConsultantRoleCon) emailConsultantRoleCon.textContent = con.role;
+          if (emailConsultantAdviceCon) emailConsultantAdviceCon.textContent = `"${con.advice}"`;
+        }
       }
 
       laptopModal.classList.add('active');
@@ -4944,7 +5801,7 @@
       reportGrade.style.background = "linear-gradient(135deg, #b91c1c 0%, #7f1d1d 100%)";
       reportCarbon.textContent = "+%45 Kirlilik Artışı";
       reportAcceptedCount.textContent = `${acceptedCount} Proje İmzalandı`;
-      reportFinalBudget.textContent = `%${stats.budget} (Kritik)`;
+      reportFinalBudget.textContent = `${formatTL(stats.budget)} (Kritik)`;
       reportFinalMayor.textContent = `%${stats.mayor} (Öfkeli)`;
       resultModal.classList.add('active');
       saveSprintToHistory(grade, false, title);
@@ -4962,7 +5819,7 @@
       reportGrade.style.background = grade === "S" ? "linear-gradient(135deg, #d4af37 0%, #047857 100%)" : "linear-gradient(135deg, #047857 0%, #064e3b 100%)";
       reportCarbon.textContent = `-%${Math.round(stats.eco * 0.7)} Emisyon`;
       reportAcceptedCount.textContent = `${acceptedCount} Proje Yürürlükte`;
-      reportFinalBudget.textContent = `%${stats.budget} (Başarılı)`;
+      reportFinalBudget.textContent = `${formatTL(stats.budget)} (Kalan Rezerv)`;
       reportFinalMayor.textContent = `%${stats.mayor} (Tam Güven)`;
       resultModal.classList.add('active');
       saveSprintToHistory(grade, true, 'Antalya COP31 Zirvesi Başarısı (Kasım 2026)');
@@ -4995,6 +5852,58 @@
       }, 250);
     }
     
+    
+    // Office Notice & Drawer Full Modal Helpers
+    function showOfficeNotice(title, sub, body, icon = '🔔', borderColor = '#38bdf8') {
+      const modal = document.getElementById('officeNoticeModal');
+      const t = document.getElementById('officeNoticeTitle');
+      const s = document.getElementById('officeNoticeSub');
+      const b = document.getElementById('officeNoticeBody');
+      const ic = document.getElementById('officeNoticeIcon');
+      if (t) t.textContent = title;
+      if (s) s.textContent = sub;
+      if (b) b.textContent = body;
+      if (ic) ic.textContent = icon;
+      if (modal) {
+        const card = modal.querySelector('.drawer-card');
+        if (card) {
+          card.style.borderColor = borderColor;
+          card.style.boxShadow = `0 25px 60px rgba(0,0,0,0.95), 0 0 35px ${borderColor}66`;
+        }
+        if (b) b.style.borderLeftColor = borderColor;
+        if (t) t.style.color = borderColor;
+        modal.classList.add('active');
+        soundChime();
+      }
+    }
+
+    const drawerFullModal = document.getElementById('drawerFullModal');
+    const btnGoToDrawer = document.getElementById('btnGoToDrawer');
+    const btnCloseDrawerFull = document.getElementById('btnCloseDrawerFull');
+    const officeNoticeModal = document.getElementById('officeNoticeModal');
+    const btnCloseOfficeNotice = document.getElementById('btnCloseOfficeNotice');
+
+    if (btnGoToDrawer) {
+      btnGoToDrawer.addEventListener('click', () => {
+        if (drawerFullModal) drawerFullModal.classList.remove('active');
+        renderDrawerList();
+        if (drawerModal) drawerModal.classList.add('active');
+        soundPaperSlide();
+      });
+    }
+
+    if (btnCloseDrawerFull) {
+      btnCloseDrawerFull.addEventListener('click', () => {
+        if (drawerFullModal) drawerFullModal.classList.remove('active');
+      });
+    }
+
+    if (btnCloseOfficeNotice) {
+      btnCloseOfficeNotice.addEventListener('click', () => {
+        if (officeNoticeModal) officeNoticeModal.classList.remove('active');
+      });
+    }
+
     function restartGame() {
       stats = { budget: 1000000, eco: 45, youth: 55, mayor: 50 };
       dayStartStats = { budget: 1000000, eco: 45, youth: 55, mayor: 50 };
@@ -5007,7 +5916,10 @@
       cardIndex = 0;
       postponedPile = [];
       budgetRequestedCount = 0;
-      deck = [...officialMemos].sort(() => Math.random() - 0.5);
+      // Takip evrakları (22, 23, 25, 26, 28, 29) sadece kararlarla zincirleme açılır
+      pendingChainMemos = [];
+      const initialPool = officialMemos.filter(m => !m.isChainFollowup);
+      deck = [...initialPool].sort(() => Math.random() - 0.5);
       resultModal.classList.remove('active');
       dayEndModal.classList.remove('active');
       drawerModal.classList.remove('active');
