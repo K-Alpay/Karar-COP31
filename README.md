@@ -47,14 +47,14 @@ Gerçek bir bürokrat kararlarının sayısal sonuçlarını önceden kesin puan
 Aceleye getirilemeyecek kadar riskli kararları masanın sağ altındaki çekmeceye çekerek erteleyebilirsiniz. Ancak sümen altı kapasitesi **en fazla 3 dosya** ile sınırlıdır; bürokrasiyi sonsuza kadar kilitleyemezsiniz.
 
 ### 4. Nedensellik Zinciri (Ön-Chain Karar Ağaçları)
-Kararlar izole değildir. Bugün imzaladığınız bir karar, ertesi sabah yeni bir takip dosyası olarak masanıza geri döner:
-* *Kaleiçi yayalaştırılırsa* → Ertesi gün esnaf transfer otoparkı talebiyle gelir.
-* *Agri-PV güneş paneli kurulursa* → Ertesi sabah sulama birlikleri şebeke dengeleme dosyası açar.
+Kararlar izole değildir. Bir haftada imzaladığınız bir karar, takip eden haftada yeni bir takip dosyası olarak masanıza geri döner:
+* *Kaleiçi yayalaştırılırsa* → Sonraki hafta esnaf transfer otoparkı talebiyle gelir.
+* *Agri-PV güneş paneli kurulursa* → Sonraki hafta sulama birlikleri şebeke dengeleme dosyası açar.
 * *Yangın İHA filosu onaylanırsa* → Yangın sezonunda erken müdahale raporu masaya düşer.
 
 ### 5. Dinamik Makam Penceresi & Gündem Gazetesi
 * **Canlı Pencere:** Makam odasının penceresinden görünen Antalya kent silüeti, aldığınız ekolojik kararlarla eşzamanlı olarak değişir (sisli ve kirli havadan pırıl pırıl Akdeniz mavisine).
-* **Akşam Gazetesi:** Mesai bitiminde *Gündem Şehir Gazetesi*, kararlarınızın halk ve basın üzerindeki yankılarını günün manşetlerine taşır.
+* **Haftalık Basın & Şehir Gazetesi:** Hafta mesaisi bitiminde *Gündem Şehir Gazetesi*, kararlarınızın halk ve basın üzerindeki yankılarını haftanın manşetlerine taşır.
 
 ---
 
