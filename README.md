@@ -3,12 +3,13 @@
 [![Oyna](https://img.shields.io/badge/🎮_Canlı_Oyna-GitHub_Pages-10b981?style=for-the-badge&logo=githubpages&logoColor=white)](https://k-alpay.github.io/Karar-COP31/)
 [![Hackathon](https://img.shields.io/badge/GameUP_Türkiye-COP31_Hackathonu_2026-38bdf8?style=for-the-badge)](https://gameupturkiye.org)
 [![Teknoloji](https://img.shields.io/badge/Mimari-Vanilla_JS_•_PWA_•_Web_Audio-f59e0b?style=for-the-badge)](https://developer.mozilla.org)
+[![Yapay Zeka Destekli](https://img.shields.io/badge/Geliştirme-Yapay_Zekâ_Destekli-8b5cf6?style=for-the-badge)](https://github.com/K-Alpay/Karar-COP31)
 
 > **"İklim krizi bir 'iyi ve kötü' savaşı değil; iki meşru ihtiyacın ve iki doğrunun arasındaki hassas dengedir."**
 
 **Karar: COP31**, 2026 Birleşmiş Milletler İklim Değişikliği Konferansı (COP31) arifesinde, Akdeniz havzasının iklim krizinden en çok etkilenen kenti **Antalya**'da geçen anlatı odaklı bir kamu yönetimi ve strateji simülasyonudur.
 
-Oyuncu, Antalya Büyükşehir Belediyesi Çevre ve İklim Değişikliği Dairesi Başkanı koltuğuna oturur. Zirveye 5 gün kala kentin su krizinden tarımsal verimliliğe, yangın savunmasından turizm gelirlerine kadar 29 kritik Antalya senaryosunu yönetir.
+Oyuncu, Antalya Büyükşehir Belediyesi Çevre ve İklim Değişikliği Dairesi Başkanı koltuğuna oturur. Zirveye **4 hafta kala** kentin su krizinden tarımsal verimliliğe, yangın savunmasından turizm gelirlerine kadar 29 kritik Antalya senaryosunu yönetir ve 4 haftanın sonunda kentin nihai COP31 İklim Karnesi Raporu'nu alır.
 
 ---
 
@@ -73,14 +74,17 @@ Kararlar izole değildir. Bugün imzaladığınız bir karar, ertesi sabah yeni 
 * **Saf Vanilla Stack:** Hiçbir ağır framework veya harici npm paketi olmadan saf **HTML5, CSS3 Grid/Flexbox ve Modern JavaScript (ES6+)** ile sıfırdan geliştirildi.
 * **Sıfır Bağımlılık & Yüksek Hız:** Toplam yükleme boyutu optimize edilmiştir; 60 FPS akıcı animasyonlar ve anında açılış süresi sunar.
 * **Dinamik Viewport & Responsive Tasarım:** `100dvh` ve `min()` matematiksel oranlarıyla tasarlanan sahne mimarisi, hem geniş ekran monitörlerde hem de dikey cep telefonu ekranlarında kusursuz piksel uyumu sağlar.
-* **Web Audio API:** Arka plan ortam müziği ve mühür ses efektleri harici kütüphane olmaksızın tarayıcı yerel ses motoru üzerinden gerçek zamanlı hacim denetimiyle yönetilir.
+* **Web Audio API & Özgün Soundtrack:** Arka plan ortam müziği (*The Pending File*) ve mühür ses efektleri harici kütüphane olmaksızın tarayıcı yerel ses motoru üzerinden gerçek zamanlı hacim denetimiyle yönetilir.
 * **PWA & Çevrimdışı Desteği:** Service worker altyapısıyla çevrimdışı çalışma ve mobil cihazlara "Ana Ekrana Ekle" özelliği hazırdır.
+* **Yapay Zekâ Destekli Geliştirme:** Oyun senaryolarının kurgulanması, karar ağaçlarının dengelenmesi ve teknik kod mimarisinin optimizasyonunda yapay zekâ model ve araçlarından yararlanılmıştır.
 
 ---
 
 ## 👤 Geliştirici & Etkinlik Bilgisi
 
 * **Geliştirici:** Kübranur Alpay
+* **Geliştirme Metodu:** Yapay Zekâ Destekli Tasarım & Kodlama
+* **Müzik:** *The Pending File*
 * **Etkinlik:** GameUP Türkiye Oyun Hackathonu 2026
 * **Tema:** COP31 Türkiye / Gençlik, İklim ve Sürdürülebilir Kentler
 * **Tarih:** Kasım 2026
