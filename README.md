@@ -3,7 +3,6 @@
 [![Oyna](https://img.shields.io/badge/🎮_Canlı_Oyna-GitHub_Pages-10b981?style=for-the-badge&logo=githubpages&logoColor=white)](https://k-alpay.github.io/Karar-COP31/)
 [![Hackathon](https://img.shields.io/badge/GameUP_Türkiye-COP31_Hackathonu_2026-38bdf8?style=for-the-badge)](https://gameupturkiye.org)
 [![Teknoloji](https://img.shields.io/badge/Mimari-Vanilla_JS_•_PWA_•_Web_Audio-f59e0b?style=for-the-badge)](https://developer.mozilla.org)
-[![Lisans](https://img.shields.io/badge/Lisans-MIT-gray?style=for-the-badge)](LICENSE)
 
 > **"İklim krizi bir 'iyi ve kötü' savaşı değil; iki meşru ihtiyacın ve iki doğrunun arasındaki hassas dengedir."**
 
@@ -86,8 +85,3 @@ Kararlar izole değildir. Bugün imzaladığınız bir karar, ertesi sabah yeni 
 * **Tema:** COP31 Türkiye / Gençlik, İklim ve Sürdürülebilir Kentler
 * **Tarih:** Kasım 2026
 
----
-
-## 📄 Lisans
-
-Bu proje [MIT Lisansı](LICENSE) kapsamında açık kaynak olarak geliştirilmiştir.
